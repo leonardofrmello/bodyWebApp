@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Perfil</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content [formGroup]="userSession">
+
+    <ion-grid>
+
+        <ion-row>
+          <ion-col col-12 class="col_foto">
+              <img src="{{'./assets/images/0.png'}}" />
+          </ion-col>
+        </ion-row>
+
+    </ion-grid>
+
+    <div text-center class="titleName">
+       Daiana
+    </div>
+    <div text-center>
+        Daiana@hotmail.com
+     </div>
+
+     <div class="dadosPessoais" padding>
+
+      <div class="title">
+        Dados Pessoais
+      </div>
+
+      <div class="boxDados">
+        <div class="label">Sexo:</div>
+        <div>Femino</div>
+      </div>
+
+      <div class="boxDados">
+        <div class="label">Telefone:</div>
+        <div>24 998381324</div>
+      </div>
+
+      <div class="boxDados">
+        <div class="label">Estado Civil:</div>
+        <div>Casada(A)</div>
+      </div>
+
+      <div class="boxDados borderbt">
+        <div class="label">Data de Nascimento:</div>
+        <div>02/02/1989</div>
+      </div>
+    </div>
+    <!--<ion-card>
+      <ion-item no-lines>
+        <div class="avatar-wrapper">
+          <ion-avatar>
+            <img src="{{img || './assets/images/0.png'}}" />
+          </ion-avatar>
+          <button *ngIf="edit" (click)="takePicture()" class="btn-tirar-foto" ion-button icon-only round>
+            <ion-icon name="camera"></ion-icon>
+          </button>
+        </div>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="person" item-left></ion-icon>
+        <p *ngIf="!edit">{{user.name}}</p>
+        <ion-input *ngIf="edit" type="text" placeholder="Nome" formControlName="name" [class.error]="!userSession.controls.name.valid && userSession.controls.name.dirty"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="call" item-left></ion-icon>
+        <p *ngIf="!edit">({{user.ddd}}) {{user.phone}}</p>
+        <ion-input *ngIf="edit" type="number" placeholder="DDD" formControlName="ddd" [class.error]="!userSession.controls.ddd.valid && userSession.controls.ddd.dirty"></ion-input>
+        <ion-input *ngIf="edit" type="number" placeholder="Celular" formControlName="phone" [class.error]="!userSession.controls.phone.valid && userSession.controls.phone.dirty"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="chatboxes" item-left></ion-icon>
+        <p *ngIf="!edit">{{user.obs}}</p>
+        <ion-textarea *ngIf="edit" type="text" placeholder="Observação" formControlName="obs" [class.error]="!userSession.controls.obs.valid && userSession.controls.obs.dirty"></ion-textarea>
+      </ion-item>
+    </ion-card>
+    <ion-fab top right *ngIf="!edit">
+      <button ion-fab mini color="secondary" (click)="editUser()">
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-fab>
+    <ion-fab bottom left *ngIf="edit">
+      <button ion-fab mini color="cancel" (click)="cancelar()">
+        <ion-icon name="undo"></ion-icon>
+      </button>
+    </ion-fab>
+    <ion-fab bottom right *ngIf="edit">
+      <button ion-fab mini (click)="salvar(userSession)" [disabled]="!userSession.valid">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </ion-fab>-->
+</ion-content>

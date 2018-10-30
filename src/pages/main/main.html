@@ -1,0 +1,40 @@
+<ion-header color="light">
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Página Inicial</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="bg-style">
+
+  <ion-toolbar color="primary" justify-content-between>
+      <div class="ajustTop">
+        <ion-buttons start (click)="openPage('ProfilePage')">
+          <button ion-button icon-only>
+            <ion-icon name="ios-create-outline"></ion-icon>
+          </button>
+        </ion-buttons>
+        <ion-buttons start (click)="openPage('MinhasAvaliacoesPage')">
+            <button ion-button icon-only>
+              <ion-icon name="ios-paper-outline"></ion-icon>
+            </button>
+          </ion-buttons>
+          <ion-buttons start (click)="openPage('EvolucaoPage')">
+              <button ion-button icon-only>
+                <ion-icon name="md-podium"></ion-icon>
+              </button>
+            </ion-buttons>
+
+        <ion-buttons start (click)="openPage('ListExerciciosPage')">
+          <button ion-button icon-only>
+            <ion-icon name="ios-body"></ion-icon>
+          </button>
+        </ion-buttons>
+        </div>
+      </ion-toolbar>
+
+</ion-content>

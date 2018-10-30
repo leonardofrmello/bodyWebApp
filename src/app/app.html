@@ -1,1 +1,32 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content" persistent="true">
+    <ion-content>
+      <ion-item id="cabecalho-menu" class="cabecalho-menu">
+        <!---<div>
+          <h2>Bem Vindo <br> DAIANA</h2>
+          <ion-avatar item-end>
+            <img src="{{'./assets/images/0.png'}}">
+          </ion-avatar>
+        </div>-->
+        <ion-avatar item-end>
+            <img src="{{'./assets/images/0.png'}}">
+          </ion-avatar>
+          <h2>Bem Vindo</h2>
+          <h2>DAIANA</h2>
+
+      </ion-item>
+      <ion-list>
+        <ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">
+            <ion-icon  name="{{p.icon}}" style="margin-right:10%"></ion-icon> {{p.title}}
+            <ion-badge item-end *ngIf="p.title == 'Meus Treinos' || p.title == 'Minhas Avaliaçoes'">5</ion-badge>
+        </ion-item>
+        <ion-item menuClose (click)="update()">
+          <ion-icon name="md-refresh" style="margin-right:10%"></ion-icon> Atualizar
+        </ion-item>
+        <ion-item menuClose (click)="presentLogout()">
+          <ion-icon name="log-out" style="margin-right:10%"></ion-icon> Sair da Conta
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+

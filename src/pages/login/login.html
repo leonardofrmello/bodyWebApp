@@ -1,0 +1,20 @@
+<ion-content class="bg-style">
+  <ion-card>
+    <ion-card-header>
+      Entrar
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list padding no-line [formGroup]="userData">
+          <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="text" formControlName="username"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Senha</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+          <button block ion-button (click)="singIn(userData)" [disabled]="!userData.valid">Entrar</button>
+        </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
