@@ -15,6 +15,7 @@ import { ListExerciciosPageModule } from '../pages/list-exercicios/list-exercici
 import { EvolucaoPageModule } from '../pages/evolucao/evolucao.module';
 import { MeusTreinosPageModule } from '../pages/meus-treinos/meus-treinos.module';
 import { MinhasAvaliacoesPageModule } from '../pages/minhas-avaliacoes/minhas-avaliacoes.module';
+import { MeusTreinosDetalhePageModule } from '../pages/meus-treinos-detalhe/meus-treinos-detalhe.module';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { MinhasAvaliacoesPageModule } from '../pages/minhas-avaliacoes/minhas-av
     ListExerciciosPageModule,
     MeusTreinosPageModule,
     MinhasAvaliacoesPageModule,
+    MeusTreinosDetalhePageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

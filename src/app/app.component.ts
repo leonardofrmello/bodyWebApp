@@ -14,6 +14,7 @@ import { ListExerciciosPage } from '../pages/list-exercicios/list-exercicios';
 import { EvolucaoPage } from '../pages/evolucao/evolucao';
 
 
+
 @Component({
   templateUrl: 'app.html'
 })
