@@ -1,3 +1,27 @@
 page-evolucao {
+  ion-footer .toolbar-background{
+    background: transparent!important;
+  }
+
+  .segment-button.segment-activated{
+    opacity: 0.8 !important;
+  }
+
+  .segment-button{
+    max-width: 100% !important;
+    height: 100%!important;
+    color: #fff !important;
+    background-color: #49aca8!important;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 0!important;
+  }
+
+  .buttonMore{
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 1.8em;
+  }
 
 }

@@ -1,15 +1,50 @@
 <ion-header>
 
   <ion-navbar>
+
       <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
-    <ion-title>evolucao</ion-title>
+    <ion-title>Evolução</ion-title>
+
+    <button ion-button icon-end float-right class="buttonMore" (click)="openModal()">
+      <ion-icon name="md-add"></ion-icon>
+    </button>
+
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+
+    <ion-toolbar color="primary" justify-content-between (click)="presentActionSheet()">
+        <ion-title style="font-weight: 500;">6 MESES</ion-title>
+    </ion-toolbar>
+
+    <ion-grid>
+        <ion-row>
+          <ion-col class="msgNothing" col-12 padding>
+            Nenhuma avaliação foi feita!!!
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
 </ion-content>
+
+  <ion-footer>
+      <ion-toolbar>
+          <ion-segment [(ngModel)]="icons" class="footerEvol">
+              <ion-segment-button value="composicao">
+                COMPOSIÇÃO
+              </ion-segment-button>
+              <ion-segment-button value="imc">
+                  IMC
+              </ion-segment-button>
+              <ion-segment-button value="icq">
+                  ICQ
+              </ion-segment-button>
+
+            </ion-segment>
+      </ion-toolbar>
+    </ion-footer>

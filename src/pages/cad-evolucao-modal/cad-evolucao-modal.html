@@ -1,0 +1,43 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Meta</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="closeModal()">Fechar</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-list padding no-line [formGroup]="userData">
+        <ion-item>
+          <ion-label floating>Peso</ion-label>
+          <ion-input type="text" formControlName="peso"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Altura</ion-label>
+          <ion-input type="text" formControlName="altura"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Cintura</ion-label>
+            <ion-input type="text" formControlName="cintura"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Quadril</ion-label>
+            <ion-input type="text" formControlName="quadril"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Gordura</ion-label>
+            <ion-input type="text" formControlName="gordura"></ion-input>
+        </ion-item>
+
+        <div class="msgGordura" padding margin>
+          % de gordura obtido por equipamento de biopendância
+        </div>
+
+
+        <button block ion-button (click)="singIn(userData)" [disabled]="!userData.valid">Salvar</button>
+      </ion-list>
+</ion-content>
