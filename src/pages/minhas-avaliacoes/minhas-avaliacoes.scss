@@ -1,3 +1,32 @@
 page-minhas-avaliacoes {
 
+  .listAval ion-row{
+    margin-bottom: 10px;
+  }
+
+  .boxAval{
+    background: #fff;
+    border: 2px solid #dcdcdc;
+  }
+
+  .boxAval .title{
+    text-transform: uppercase;
+    font-size: 14px;
+
+  }
+
+  .boxAval h6{
+    color: #b5b5b5;
+    font-size: 14px;
+  }
+
+  .boxAval p span{
+    color: #535353;
+  }
+
+  .boxAval p{
+    color: #acacac;
+    margin-bottom: 0;
+  }
+
 }

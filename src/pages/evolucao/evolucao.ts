@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController, ModalController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, ModalController } from 'ionic-angular';
 import { CadEvolucaoModalPage } from '../cad-evolucao-modal/cad-evolucao-modal';
 
 @IonicPage()

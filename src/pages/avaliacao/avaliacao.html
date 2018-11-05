@@ -1,0 +1,26 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Avaliação</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+    <ion-toolbar>
+        <ion-segment [(ngModel)]="icons" class="subHeaderAval">
+          <ion-segment-button value="composicao">
+            Composição Corporal
+          </ion-segment-button>
+          <ion-segment-button value="anamnese">
+            Anamnense
+          </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
+
+</ion-content>

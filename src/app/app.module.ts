@@ -17,6 +17,7 @@ import { MeusTreinosPageModule } from '../pages/meus-treinos/meus-treinos.module
 import { MinhasAvaliacoesPageModule } from '../pages/minhas-avaliacoes/minhas-avaliacoes.module';
 import { MeusTreinosDetalhePageModule } from '../pages/meus-treinos-detalhe/meus-treinos-detalhe.module';
 import { CadEvolucaoModalPageModule } from '../pages/cad-evolucao-modal/cad-evolucao-modal.module';
+import { AvaliacaoPageModule } from '../pages/avaliacao/avaliacao.module';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { CadEvolucaoModalPageModule } from '../pages/cad-evolucao-modal/cad-evol
     MeusTreinosPageModule,
     MinhasAvaliacoesPageModule,
     MeusTreinosDetalhePageModule,
-    CadEvolucaoModalPageModule
+    CadEvolucaoModalPageModule,
+    AvaliacaoPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

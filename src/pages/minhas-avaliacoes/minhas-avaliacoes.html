@@ -1,15 +1,47 @@
 <ion-header>
-
   <ion-navbar>
       <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
-    <ion-title>minhasAvaliacoes</ion-title>
+    <ion-title>Avaliações</ion-title>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content padding class="bkgPages">
 
-<ion-content padding>
+  <ion-grid class="listAval">
+
+    <ion-row (click)="openPage()">
+      <ion-col class="boxAval" col-12 padding>
+        <h5 class="title">Manoel Lucio Arujo Filho</h5>
+        <h6><ion-icon name="ios-arrow-forward"></ion-icon> CONCLUIDO</h6>
+        <p> <span><ion-icon name="md-calendar"></ion-icon> Data:</span> 20/07/2018</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="boxAval" col-12 padding>
+        <h5 class="title">Manoel Lucio Arujo Filho</h5>
+        <h6><ion-icon name="ios-arrow-forward"></ion-icon> CONCLUIDO</h6>
+        <p> <span><ion-icon name="md-calendar"></ion-icon> Data:</span> 20/07/2018</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="boxAval" col-12 padding>
+        <h5 class="title">Manoel Lucio Arujo Filho</h5>
+        <h6><ion-icon name="ios-arrow-forward"></ion-icon> CONCLUIDO</h6>
+        <p> <span><ion-icon name="md-calendar"></ion-icon> Data:</span> 20/07/2018</p>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
 
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+
+    </ion-toolbar>
+  </ion-footer>
