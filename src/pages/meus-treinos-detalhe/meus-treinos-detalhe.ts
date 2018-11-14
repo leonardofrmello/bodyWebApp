@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the MeusTreinosDetalhePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ExercicioDescPage } from '../exercicio-desc/exercicio-desc';
 
 @IonicPage()
 @Component({
@@ -20,6 +14,11 @@ export class MeusTreinosDetalhePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MeusTreinosDetalhePage');
+  }
+
+  openPage(){
+    console.log("troca page");
+    this.navCtrl.push(ExercicioDescPage);
   }
 
 }

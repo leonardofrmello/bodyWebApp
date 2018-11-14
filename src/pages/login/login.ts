@@ -23,9 +23,6 @@ export class LoginPage {
     this.userData = this.formBuilder.group({
       username: new FormControl('', [Validators.required, Validators.minLength(6)]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-
-      /*username: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(12)]),*/
     });
   }
 
@@ -34,13 +31,15 @@ export class LoginPage {
   }
 
   public singIn(userData) {
-    this.navCtrl.setRoot(MainPage);
-    /*this.baseService.postData(userData.value, "signup", "LightApi").then((result: Pessoa) => {
-      this.baseService.createUserSession(result);
-      this.navCtrl.setRoot(MainPage);
+    var dados = userData.value;
+    this.baseService.postData(`Perfil/PerfilAjax.php?callback=JSON_CALLBACK&VersaoApp=2.2.0&ValidaLogin=S&user=${dados.username}&password=${dados.password}`).then((result) => {
+      console.log(result);
+      console.log("retornou result");
+      //this.baseService.createUserSession(result);
+      //this.navCtrl.setRoot(MainPage);
     }, (err) => {
       this.baseService.showMessage(err.error.text);
-    });*/
+    });
   }
 
 }

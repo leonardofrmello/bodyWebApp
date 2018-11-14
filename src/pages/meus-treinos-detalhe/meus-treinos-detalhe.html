@@ -37,7 +37,7 @@
         </ion-row>
 
 
-        <ion-row class="box" margin-top>
+        <ion-row class="box" margin-top (click)="openPage()">
 
             <ion-col>
                 <ion-row>
@@ -46,30 +46,30 @@
                     </ion-col>
                     <ion-col col-8>
                         <h4>ESTEIRA</h4>
-                        <p>Serie: 1 Repetições: 15</p>
-                        <p>Carga: 0,00</p>
+                        <p  class="infoExerc"style="margin: 5px 0;"><ion-icon name="md-swap"></ion-icon>Serie: 1  <ion-icon name="ios-sync-outline"></ion-icon>Repetições: 15</p>
+                        <p class="infoExerc"><ion-icon name="md-speedometer"></ion-icon> Carga: 0,00</p>
                     </ion-col>
                 </ion-row>
             </ion-col>
 
         </ion-row>
 
-        <ion-row class="box">
+        <ion-row class="box" (click)="openPage()">
 
-            <ion-col>
-                <ion-row>
-                    <ion-col col-4>
-                        <img src="{{'./assets/images/exercicios/0.png'}}" />
-                    </ion-col>
-                    <ion-col col-8>
-                        <h4>ESTEIRA</h4>
-                        <p>Serie: 1 Repetições: 15</p>
-                        <p>Carga: 0,00</p>
-                    </ion-col>
-                </ion-row>
-            </ion-col>
+          <ion-col>
+              <ion-row>
+                  <ion-col col-4>
+                      <img src="{{'./assets/images/exercicios/0.png'}}" />
+                  </ion-col>
+                  <ion-col col-8>
+                      <h4>ESTEIRA</h4>
+                      <p  class="infoExerc"style="margin: 5px 0;"><ion-icon name="md-swap"></ion-icon>Serie: 1  <ion-icon name="ios-sync-outline"></ion-icon>Repetições: 15</p>
+                      <p class="infoExerc"><ion-icon name="md-speedometer"></ion-icon> Carga: 0,00</p>
+                  </ion-col>
+              </ion-row>
+          </ion-col>
 
-        </ion-row>
+      </ion-row>
 
       </ion-grid>
 

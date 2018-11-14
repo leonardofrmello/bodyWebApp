@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
@@ -18,6 +18,7 @@ import { MinhasAvaliacoesPageModule } from '../pages/minhas-avaliacoes/minhas-av
 import { MeusTreinosDetalhePageModule } from '../pages/meus-treinos-detalhe/meus-treinos-detalhe.module';
 import { CadEvolucaoModalPageModule } from '../pages/cad-evolucao-modal/cad-evolucao-modal.module';
 import { AvaliacaoPageModule } from '../pages/avaliacao/avaliacao.module';
+import { ExercicioDescPageModule } from '../pages/exercicio-desc/exercicio-desc.module';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { AvaliacaoPageModule } from '../pages/avaliacao/avaliacao.module';
   imports: [
     BrowserModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: ''
     }),
@@ -39,7 +41,8 @@ import { AvaliacaoPageModule } from '../pages/avaliacao/avaliacao.module';
     MinhasAvaliacoesPageModule,
     MeusTreinosDetalhePageModule,
     CadEvolucaoModalPageModule,
-    AvaliacaoPageModule
+    AvaliacaoPageModule,
+    ExercicioDescPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

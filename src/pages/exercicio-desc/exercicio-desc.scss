@@ -1,0 +1,41 @@
+page-exercicio-desc {
+
+  .imgExerc{
+    width: 70%;
+    border: 2px solid;
+    border-radius: 1rem;
+  }
+
+  .slide-zoom{
+    height: 100%;
+  }
+
+  .boxRepeticoes{
+    display: flex;
+  }
+
+  .boxRepeticoes div{
+    display: flex;
+    align-items: center;
+  }
+
+  ion-input{
+    border: 1px solid;
+  }
+
+  .boxBtnExec{
+    width: 100%;
+    background: #fff;
+    display: block;
+  }
+
+  .boxBtnExec button{
+    font-size: 12px;
+    font-weight: bold;
+    width: 70%;
+  }
+
+  .contentRepet{
+    background: #fff;
+  }
+}
