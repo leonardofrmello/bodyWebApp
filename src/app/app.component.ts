@@ -54,7 +54,7 @@ export class MyApp {
     this.platform.ready().then(() => {
       if(localStorage.getItem("userSession") == null) {
         //this.rootPage = LoginPage;
-        this.rootPage = LoginPage;
+        this.rootPage = MainPage;
       } else {
         this.userSession = JSON.parse(localStorage.getItem("userSession"));
         this.rootPage = MainPage;

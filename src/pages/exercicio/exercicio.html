@@ -1,0 +1,61 @@
+<ion-header>
+
+  <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>Detalhes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="bkgPages">
+
+  <ion-grid no-padding>
+
+    <ion-row>
+
+      <div [ngSwitch]="typeImg" style="width: 100%;">
+
+        <ion-col col-12 class="gifExerc" *ngSwitchCase="'exercicio'">
+          <img src="assets/images/exercicios_gif/AB_CRUNCH_MACHINE.gif" />
+        </ion-col>
+
+        <ion-col col-12 class="gifExerc" *ngSwitchCase="'musculo'">
+            <img src="assets/images/musculos/MUSCLE_BICEPS_BRACHII_PM.PNG" style="width:45%;margin-right: 3%" />
+            <img src="assets/images/musculos/MUSCLE_BICEPS_BRACHII_SM.PNG" style="width:45%;"/>
+        </ion-col>
+
+      </div>
+
+
+      <ion-col col-12>
+          <h1>BÍCEPS COM ROTAÇÅO NEUTRO/SUPINADO</h1>
+          <p>Grupo Muscular: BRAÇOS</p>
+      </ion-col>
+
+      <ion-col col-12 class="selectType">
+          <ion-toolbar>
+              <ion-segment [(ngModel)]="typeImg" color="secondary">
+                <ion-segment-button value="exercicio">
+                    Exercício
+                </ion-segment-button>
+                <ion-segment-button value="musculo">
+                    Músculo
+                </ion-segment-button>
+              </ion-segment>
+            </ion-toolbar>
+      </ion-col>
+
+      <ion-col col-12>
+
+        <div class="descExerc">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </div>
+
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

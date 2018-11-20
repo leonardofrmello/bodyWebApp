@@ -4,12 +4,84 @@
       <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
-    <ion-title>listExercicios</ion-title>
+    <ion-title>Lista de Exercícios</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="bkgPages">
+
+  <ion-grid class="listExerc">
+
+    <ion-row (click)="openPage()">
+      <ion-col col-5>
+        <img src="assets/images/exercicios/1.png" />
+      </ion-col>
+      <ion-col col-7 class="infoExerc">
+          <h6>BÍCEPS CONCENTRADO NO BANCO INCLINADO</h6>
+          <p>Grupo Muscular: BRAÇOS</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row (click)="openPage()">
+      <ion-col col-5>
+        <img src="assets/images/exercicios/1.png" />
+      </ion-col>
+      <ion-col col-7 class="infoExerc">
+          <h6>BÍCEPS CONCENTRADO NO BANCO INCLINADO</h6>
+          <p>Grupo Muscular: BRAÇOS</p>
+      </ion-col>
+    </ion-row>
+
+      <ion-row (click)="openPage()">
+        <ion-col col-5>
+          <img src="assets/images/exercicios/1.png" />
+        </ion-col>
+        <ion-col col-7 class="infoExerc">
+            <h6>BÍCEPS CONCENTRADO NO BANCO INCLINADO</h6>
+            <p>Grupo Muscular: BRAÇOS</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row (click)="openPage()">
+        <ion-col col-5>
+          <img src="assets/images/exercicios/1.png" />
+        </ion-col>
+        <ion-col col-7 class="infoExerc">
+            <h6>BÍCEPS CONCENTRADO NO BANCO INCLINADO</h6>
+            <p>Grupo Muscular: BRAÇOS</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row (click)="openPage()">
+        <ion-col col-5>
+          <img src="assets/images/exercicios/1.png" />
+        </ion-col>
+        <ion-col col-7 class="infoExerc">
+            <h6>BÍCEPS CONCENTRADO NO BANCO INCLINADO</h6>
+            <p>Grupo Muscular: BRAÇOS</p>
+        </ion-col>
+      </ion-row>
+
+        <ion-row (click)="openPage()">
+          <ion-col col-5>
+            <img src="assets/images/exercicios/1.png" />
+          </ion-col>
+          <ion-col col-7 class="infoExerc">
+              <h6>BÍCEPS CONCENTRADO NO BANCO INCLINADO</h6>
+              <p>Grupo Muscular: BRAÇOS</p>
+          </ion-col>
+        </ion-row>
+
+  </ion-grid>
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <button ion-button (click)="presentActionSheet()" style="height: inherit;">
+      <ion-icon name="md-apps"></ion-icon>
+    </button>
+  </ion-toolbar>
+</ion-footer>

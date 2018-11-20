@@ -19,6 +19,7 @@ import { MeusTreinosDetalhePageModule } from '../pages/meus-treinos-detalhe/meus
 import { CadEvolucaoModalPageModule } from '../pages/cad-evolucao-modal/cad-evolucao-modal.module';
 import { AvaliacaoPageModule } from '../pages/avaliacao/avaliacao.module';
 import { ExercicioDescPageModule } from '../pages/exercicio-desc/exercicio-desc.module';
+import { ExercicioPageModule } from '../pages/exercicio/exercicio.module';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ExercicioDescPageModule } from '../pages/exercicio-desc/exercicio-desc.
     MeusTreinosDetalhePageModule,
     CadEvolucaoModalPageModule,
     AvaliacaoPageModule,
-    ExercicioDescPageModule
+    ExercicioDescPageModule,
+    ExercicioPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
