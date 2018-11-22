@@ -1,17 +1,12 @@
 <ion-menu [content]="content" persistent="true">
     <ion-content>
       <ion-item id="cabecalho-menu" class="cabecalho-menu">
-        <!---<div>
-          <h2>Bem Vindo <br> DAIANA</h2>
-          <ion-avatar item-end>
-            <img src="{{'./assets/images/0.png'}}">
-          </ion-avatar>
-        </div>-->
+
         <ion-avatar item-end>
-            <img src="{{'./assets/images/0.png'}}">
+            <img [src]="foto" onError="this.src='./assets/images/0.png'">
           </ion-avatar>
           <h2>Bem Vindo</h2>
-          <h2>DAIANA</h2>
+          <h2>DAIANA {{foto}}</h2>
 
       </ion-item>
       <ion-list>

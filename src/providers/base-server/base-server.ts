@@ -9,6 +9,9 @@ export class BaseServerProvider {
   private basePath: string;
   public loader;
   public banco:string = "&bd=905";
+  public dataBase:string = "905";
+  public foto: string = "";
+
   constructor(
     public http: HttpClient,
     public events: Events,
@@ -30,9 +33,6 @@ export class BaseServerProvider {
 
   public postData(page: string, load?: boolean) {
     this.Loading(1, load);
-
-    //credentials["functionPage"] = type;
-    //credentials["userSession"] = JSON.parse(localStorage.getItem("userSession"));
     return new Promise((resolve, reject) => {
       this.http.jsonp(this.basePath + "/" + page + this.banco, "callback=JSON_CALLBACK")
       .subscribe(data =>{ this.Loading(0, load);
@@ -65,6 +65,15 @@ export class BaseServerProvider {
       this.loader = this.loadingCtrl.create();
       this.loader.present();
     }
+  }
+
+  public MontaBanco(){
+    //pega dados do perfil
+    this.postData("Perfil/PerfilAjax.php?callback=JSON_CALLBACK&BuscaPerfil=S").then((result : Pessoa) => {
+        localStorage.setItem("JsonPerfil", JSON.stringify(result[1]));
+        this.events.publish('user:foto');
+    })
+
   }
 
   //let EMAILPATTERN = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;

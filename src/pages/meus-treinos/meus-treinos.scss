@@ -29,13 +29,25 @@ page-meus-treinos {
     color: #050505;
   }
 
-.scroll-content{
-  background-color: #f9f9f9 !important;
-}
 
-.checado{
-  color: #7ebe8e;
-}
+  .checado{
+    color: #7ebe8e;
+  }
 
+  .segment-button{
+    height: 100%!important;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-weight: bold;
+    flex-direction: column;
+    color: #fff!important;
+    border:none !important;
+  }
+
+  .segment-button ion-icon {
+    line-height: 1.4rem !important;
+    margin-top: 8px !important;
+  }
 
 }

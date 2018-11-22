@@ -10,31 +10,74 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="bkgPages">
 
-  <div class="boxTreino" padding (click)="openPage()">
-      <h3>TREINO A   <ion-icon name="md-checkmark-circle" float-right class="checado"></ion-icon>  </h3>
-      <p>Criado por: WALDEMIR MONTEIRO ALEXANDRE</p>
-      <p no-margin> <span><ion-icon name="md-calendar"></ion-icon> Período:</span>  08/10/2018 <span>a</span> 12/12/2018</p>
-  </div>
+    <ion-row>
 
-  <div class="boxTreino" padding (click)="openPage()">
-      <h3>TREINO A   <ion-icon name="md-checkmark-circle" float-right class="checado"></ion-icon>  </h3>
-      <p>Criado por: WALDEMIR MONTEIRO ALEXANDRE</p>
-      <p no-margin> <span><ion-icon name="md-calendar"></ion-icon> Período:</span>  08/10/2018 <span>a</span> 12/12/2018</p>
-  </div>
+      <div [ngSwitch]="typeTreino" style="width: 100%;">
+
+        <ion-col col-12 class="gifExerc" no-padding *ngSwitchCase="'hoje'">
+
+            <div class="boxTreino" padding (click)="openPage()">
+                <h3>TREINO A   <ion-icon name="md-checkmark-circle" float-right class="checado"></ion-icon>  </h3>
+                <p>Criado por: WALDEMIR MONTEIRO ALEXANDRE</p>
+                <p no-margin> <span><ion-icon name="md-calendar"></ion-icon> Período:</span>  08/10/2018 <span>a</span> 12/12/2018</p>
+            </div>
+
+            <div class="boxTreino" padding (click)="openPage()">
+                <h3>TREINO A   <ion-icon name="md-checkmark-circle" float-right class="checado"></ion-icon>  </h3>
+                <p>Criado por: WALDEMIR MONTEIRO ALEXANDRE</p>
+                <p no-margin> <span><ion-icon name="md-calendar"></ion-icon> Período:</span>  08/10/2018 <span>a</span> 12/12/2018</p>
+            </div>
+
+        </ion-col>
+
+        <ion-col col-12 class="gifExerc" no-padding *ngSwitchCase="'ativos'">
+          ativos
+        </ion-col>
+
+        <ion-col col-12 class="gifExerc" no-padding *ngSwitchCase="'vencidos'">
+          Vencidos
+        </ion-col>
+
+        <ion-col col-12 class="gifExerc" no-padding *ngSwitchCase="'todos'">
+
+          <div class="boxTreino" padding (click)="openPage()" *ngFor="let treino of treinosTodos">
+            <h3> {{treino[1]}}  <ion-icon name="md-checkmark-circle" float-right class="checado"></ion-icon>  </h3>
+            <p>Criado por: {{treino[4]}}</p>
+            <p no-margin> <span><ion-icon name="md-calendar"></ion-icon> Período:</span>  {{treino[2]}} <span>a</span> {{treino[3]}}</p>
+          </div>
+
+        </ion-col>
+
+
+      </div>
+
+    </ion-row>
 
 </ion-content>
 
 <ion-footer>
+
     <ion-toolbar>
+        <ion-segment [(ngModel)]="typeTreino" color="secondary">
+          <ion-segment-button value="hoje">
+              <ion-icon name='ios-radio-button-on-outline'></ion-icon>
+               HOJE
+          </ion-segment-button>
+          <ion-segment-button value="ativos">
+              <ion-icon name='ios-checkmark-circle-outline'></ion-icon>
+              ATIVOS
+          </ion-segment-button>
+          <ion-segment-button value="vencidos">
+              <ion-icon name='ios-clock-outline'></ion-icon>
+              Vencidos
+          </ion-segment-button>
+          <ion-segment-button value="todos">
+              <ion-icon name='md-globe'></ion-icon>
+              Todos
+          </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
 
-      <div class="ajustTop buttonsFooter">
-          <button style="background: transparent;">  <ion-icon name='ios-radio-button-on-outline'></ion-icon> <br> <label>HOJE</label> </button>
-          <button style="background: transparent;">  <ion-icon name='ios-checkmark-circle-outline'></ion-icon> <br> <label>ATIVOS</label> </button>
-          <button style="background: transparent;">  <ion-icon name='ios-clock-outline'></ion-icon> <br> <label>VENCIDOS</label> </button>
-          <button style="background: transparent;">  <ion-icon name='md-globe'></ion-icon> <br> <label>TODOS</label> </button>
-      </div>
-
-    </ion-toolbar>
   </ion-footer>

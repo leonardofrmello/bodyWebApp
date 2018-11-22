@@ -23,6 +23,7 @@ export class MyApp {
   rootPage: any;
   pages: Array<{title: string, component: any, icon: string}>;
   public userSession: Pessoa;
+  public foto: string;
 
   constructor(
     public platform: Platform,
@@ -44,19 +45,25 @@ export class MyApp {
     events.subscribe('user:created', () => {
       this.userSession = JSON.parse(localStorage.getItem("userSession"));
     });
+
     events.subscribe('user:Logout', () => {
       localStorage.removeItem("userSession");
       this.userSession = undefined;
     });
+
+    events.subscribe('user:foto', () => {
+      let dados = JSON.parse(localStorage.getItem("JsonPerfil"));
+      this.foto = "http://finance.dragon296.startdedicated.com/Pessoas/"+this.baseService.dataBase+"/Clientes/"+dados.IDALUNO+".png";
+    });
+
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      if(localStorage.getItem("userSession") == null) {
-        //this.rootPage = LoginPage;
-        this.rootPage = MainPage;
+      if(localStorage.getItem("token") == null) {
+        this.rootPage = LoginPage;
       } else {
-        this.userSession = JSON.parse(localStorage.getItem("userSession"));
+        //this.userSession = JSON.parse(localStorage.getItem("userSession"));
         this.rootPage = MainPage;
       }
       this.statusBar.styleDefault();
@@ -69,6 +76,7 @@ export class MyApp {
   }
 
   public presentLogout() {
+    localStorage.clear();
     this.nav.setRoot(LoginPage);
   }
 }

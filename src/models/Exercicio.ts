@@ -1,4 +1,4 @@
-export interface Pessoa {
+export interface Exercicio {
     CEL: string,
     DESCRICAO_ALUNO: string,
     DTNASC: string,

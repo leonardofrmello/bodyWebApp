@@ -21,8 +21,8 @@ export class LoginPage {
     private formBuilder: FormBuilder
   ) {
     this.userData = this.formBuilder.group({
-      username: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      username: new FormControl('leonardofrmello@hotmail.com', [Validators.required, Validators.minLength(6)]),
+      password: new FormControl('02021989', [Validators.required, Validators.minLength(6)]),
     });
   }
 
@@ -33,10 +33,17 @@ export class LoginPage {
   public singIn(userData) {
     var dados = userData.value;
     this.baseService.postData(`Perfil/PerfilAjax.php?callback=JSON_CALLBACK&VersaoApp=2.2.0&ValidaLogin=S&user=${dados.username}&password=${dados.password}`).then((result) => {
-      console.log(result);
-      console.log("retornou result");
-      //this.baseService.createUserSession(result);
-      //this.navCtrl.setRoot(MainPage);
+      if(result[0].ISVALID == "S"){
+        console.log(result);
+        localStorage.setItem("token", result[0].COOKIE);
+        this.baseService.MontaBanco();
+        this.navCtrl.push(MainPage);
+      }else{
+        /*ons.notification.alert({message: response[0].MSG, title: "Atenção"});
+        delete $window.localStorage.token;
+        $window.location = "login.html";*/
+      }
+
     }, (err) => {
       this.baseService.showMessage(err.error.text);
     });

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormGroup } from '@angular/forms';
+import { BaseServerProvider } from '../../providers/base-server/base-server';
 import { Pessoa } from '../../models/Pessoa';
 
 @IonicPage()
@@ -10,33 +10,50 @@ import { Pessoa } from '../../models/Pessoa';
 })
 export class ProfilePage {
 
-  public userSession: FormGroup;
-  public edit: boolean;
-  public user: Pessoa;
-  public img: string;
+  public dados: Pessoa;
+  public foto: string;
+  public nome: string;
+  public email: string;
+  public sexo: string;
+  public celular: string;
+  public estadoCivil: string;
+  public dtNasc: string;
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    public baseService: BaseServerProvider,
   ) {
-    this.cancelar();
-    this.userSession = new FormGroup({
-      /*name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(128)]),
-      email: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(128)]),
-      celular: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(14)]),
-      endereco: new FormControl('', [Validators.required, Validators.maxLength(1024)]),
-      oferta: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(128)]),*/
-      //img: new FormControl(this.user.img),
-    });
+    this.carregaDadosPerfil();
   }
 
-  public editUser() {
-    this.edit = true;
+  carregaDadosPerfil(){
+
+    if(localStorage.getItem("JsonPerfil") != null){
+      this.dados = JSON.parse(localStorage.getItem("JsonPerfil"));
+      this.foto = "http://finance.dragon296.startdedicated.com/Pessoas/"+this.baseService.dataBase+"/Clientes/"+this.dados.IDALUNO+".png";
+      this.nome = this.dados.NOME;
+      this.email= this.dados.EMAIL;
+      this.sexo= this.dados.SEXO;
+      this.celular= this.dados.CEL;
+      this.estadoCivil= this.dados.ESTCIVIL
+      this.dtNasc= this.dados.DTNASC;
+    }else{
+      this.baseService.postData("Perfil/PerfilAjax.php?callback=JSON_CALLBACK&BuscaPerfil=S").then((result : Pessoa) => {
+        this.dados = result[1];
+        this.foto = "http://finance.dragon296.startdedicated.com/Pessoas/"+this.baseService.dataBase+"/Clientes/"+this.dados.IDALUNO+".png";
+        this.nome = this.dados.NOME;
+        this.email= this.dados.EMAIL;
+        this.sexo= this.dados.SEXO;
+        this.celular= this.dados.CEL;
+        this.estadoCivil= this.dados.ESTCIVIL
+        this.dtNasc= this.dados.DTNASC;
+      }, (err) => {
+        this.baseService.showMessage(err.error.text);
+      });
+
+    }
+
   }
 
-  public cancelar() {
-    this.user = JSON.parse(localStorage.getItem("userSession"));
-    //this.img = this.user.img;
-    this.edit = false;
-  }
 }

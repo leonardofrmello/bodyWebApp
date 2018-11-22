@@ -14,65 +14,15 @@
 
   <ion-grid class="listExerc">
 
-    <ion-row (click)="openPage()">
+    <ion-row (click)="openPage()" *ngFor="let exerc of listExercicios">
       <ion-col col-5>
-        <img src="assets/images/exercicios/1.png" />
+        <img src="assets/images/exercicios/{{exerc[0]}}.png" onError="this.src='assets/images/exercicios/0.png'" />
       </ion-col>
       <ion-col col-7 class="infoExerc">
-          <h6>BÍCEPS CONCENTRADO NO BANCO INCLINADO</h6>
-          <p>Grupo Muscular: BRAÇOS</p>
+          <h6>{{exerc[1]}}</h6>
+          <p>Grupo Muscular: {{exerc[2]}}</p>
       </ion-col>
     </ion-row>
-
-    <ion-row (click)="openPage()">
-      <ion-col col-5>
-        <img src="assets/images/exercicios/1.png" />
-      </ion-col>
-      <ion-col col-7 class="infoExerc">
-          <h6>BÍCEPS CONCENTRADO NO BANCO INCLINADO</h6>
-          <p>Grupo Muscular: BRAÇOS</p>
-      </ion-col>
-    </ion-row>
-
-      <ion-row (click)="openPage()">
-        <ion-col col-5>
-          <img src="assets/images/exercicios/1.png" />
-        </ion-col>
-        <ion-col col-7 class="infoExerc">
-            <h6>BÍCEPS CONCENTRADO NO BANCO INCLINADO</h6>
-            <p>Grupo Muscular: BRAÇOS</p>
-        </ion-col>
-      </ion-row>
-
-      <ion-row (click)="openPage()">
-        <ion-col col-5>
-          <img src="assets/images/exercicios/1.png" />
-        </ion-col>
-        <ion-col col-7 class="infoExerc">
-            <h6>BÍCEPS CONCENTRADO NO BANCO INCLINADO</h6>
-            <p>Grupo Muscular: BRAÇOS</p>
-        </ion-col>
-      </ion-row>
-
-      <ion-row (click)="openPage()">
-        <ion-col col-5>
-          <img src="assets/images/exercicios/1.png" />
-        </ion-col>
-        <ion-col col-7 class="infoExerc">
-            <h6>BÍCEPS CONCENTRADO NO BANCO INCLINADO</h6>
-            <p>Grupo Muscular: BRAÇOS</p>
-        </ion-col>
-      </ion-row>
-
-        <ion-row (click)="openPage()">
-          <ion-col col-5>
-            <img src="assets/images/exercicios/1.png" />
-          </ion-col>
-          <ion-col col-7 class="infoExerc">
-              <h6>BÍCEPS CONCENTRADO NO BANCO INCLINADO</h6>
-              <p>Grupo Muscular: BRAÇOS</p>
-          </ion-col>
-        </ion-row>
 
   </ion-grid>
 
