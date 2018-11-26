@@ -18,20 +18,20 @@
       <div [ngSwitch]="typeImg" style="width: 100%;">
 
         <ion-col col-12 class="gifExerc" *ngSwitchCase="'exercicio'">
-          <img src="assets/images/exercicios_gif/AB_CRUNCH_MACHINE.gif" />
+          <img src="assets/images/exercicios_gif/{{exercicio[4]}}" onError="this.src='assets/images/exercicios_gif/-1.PNG'" />
         </ion-col>
 
         <ion-col col-12 class="gifExerc" *ngSwitchCase="'musculo'">
-            <img src="assets/images/musculos/MUSCLE_BICEPS_BRACHII_PM.PNG" style="width:45%;margin-right: 3%" />
-            <img src="assets/images/musculos/MUSCLE_BICEPS_BRACHII_SM.PNG" style="width:45%;"/>
+            <img src="assets/images/musculos/{{exercicio[6]}}.PNG" onError="this.src='assets/images/musculos/MUSCLE_MUSCLEMAN_PM.PNG'" style="width:45%;margin-right: 3%" />
+            <img src="assets/images/musculos/{{exercicio[7]}}.PNG" onError="this.src='assets/images/musculos/MUSCLE_MUSCLEMAN_SM.PNG'" style="width:45%;"/>
         </ion-col>
 
       </div>
 
 
       <ion-col col-12>
-          <h1>BÍCEPS COM ROTAÇÅO NEUTRO/SUPINADO</h1>
-          <p>Grupo Muscular: BRAÇOS</p>
+          <h1> {{exercicio[1]}}</h1>
+          <p>Grupo Muscular: {{exercicio[2]}}</p>
       </ion-col>
 
       <ion-col col-12 class="selectType">
@@ -50,7 +50,7 @@
       <ion-col col-12>
 
         <div class="descExerc">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+          {{exercicio[5]}}
         </div>
 
       </ion-col>

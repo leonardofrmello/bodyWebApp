@@ -16,60 +16,45 @@
 
         <ion-row class="box topo" style="border-bottom: 2px solid #dadada;">
           <ion-col col-12 padding>
-            <h3>TREINO B <ion-icon name="md-checkmark-circle" float-right class="checado"></ion-icon></h3>
-            <p><ion-icon name="ios-ionic"></ion-icon>Objetivo: <span>HIPERTROFIA</span> </p>
+            <h3>{{detalhesTreino[1]}} <ion-icon name="md-checkmark-circle" float-right class="checado"></ion-icon></h3>
+            <p><ion-icon name="ios-ionic"></ion-icon>Objetivo: <span>{{detalhesTreino[6]}}</span> </p>
             <p><ion-icon name="ios-paper-plane"></ion-icon>Dia do Treino: <span>10/11/2018</span></p>
-            <p><ion-icon name="md-calendar"></ion-icon> Periodo: <span>10/11/2018</span>  a <span>08/12/2018</span></p>
-            <p><ion-icon name="ios-chatbubbles"></ion-icon> Observações:</p>
+            <p><ion-icon name="md-calendar"></ion-icon> Periodo: <span>{{detalhesTreino[2]}}</span>  a <span>{{detalhesTreino[3]}}</span></p>
+            <p><ion-icon name="ios-chatbubbles"></ion-icon> Observações: {{detalhesTreino[7]}}</p>
           </ion-col>
         </ion-row>
 
-        <ion-row class="box" margin-top style="border-bottom: 2px solid #dadada;">
+        <ion-row class="box" margin-top  margin-bottom style="border-bottom: 2px solid #dadada;">
+
             <ion-col col-12 class="boxSemana">
-              <div>D</div>
-              <div>S</div>
-              <div>T</div>
-              <div>Q</div>
-              <div>Q</div>
-              <div>S</div>
-              <div>S</div>
+              <div [ngClass]="{'ativo': detalhesTreino[8][0] == 'S'}">D</div>
+              <div [ngClass]="{'ativo': detalhesTreino[8][1] == 'S'}">S</div>
+              <div [ngClass]="{'ativo': detalhesTreino[8][2] == 'S'}">T</div>
+              <div [ngClass]="{'ativo': detalhesTreino[8][3] == 'S'}">Q</div>
+              <div [ngClass]="{'ativo': detalhesTreino[8][4] == 'S'}">Q</div>
+              <div [ngClass]="{'ativo': detalhesTreino[8][5] == 'S'}">S</div>
+              <div [ngClass]="{'ativo': detalhesTreino[8][6] == 'S'}">S</div>
             </ion-col>
         </ion-row>
 
 
-        <ion-row class="box" margin-top (click)="openPage()">
+        <ion-row class="box" (click)="openPage()" *ngFor="let exerc of listExerc.data">
 
             <ion-col>
                 <ion-row>
                     <ion-col col-4>
-                        <img src="{{'./assets/images/exercicios/0.png'}}" />
+                        <img src="assets/images/exercicios/{{exerc[0]}}.png" onError="this.src='assets/images/exercicios/0.png'"/>
                     </ion-col>
                     <ion-col col-8>
-                        <h4>ESTEIRA</h4>
-                        <p  class="infoExerc"style="margin: 5px 0;"><ion-icon name="md-swap"></ion-icon>Serie: 1  <ion-icon name="ios-sync-outline"></ion-icon>Repetições: 15</p>
-                        <p class="infoExerc"><ion-icon name="md-speedometer"></ion-icon> Carga: 0,00</p>
+
+                        <h4>{{exerc[1]}}</h4>
+                        <p  class="infoExerc"style="margin: 5px 0;"><ion-icon name="md-swap"></ion-icon>Serie: {{exerc[3]}}  <ion-icon name="ios-sync-outline"></ion-icon>Repetições: {{exerc[4]}}</p>
+                        <p class="infoExerc"><ion-icon name="md-speedometer"></ion-icon> Carga: {{exerc[5]}}</p>
                     </ion-col>
                 </ion-row>
             </ion-col>
 
         </ion-row>
-
-        <ion-row class="box" (click)="openPage()">
-
-          <ion-col>
-              <ion-row>
-                  <ion-col col-4>
-                      <img src="{{'./assets/images/exercicios/0.png'}}" />
-                  </ion-col>
-                  <ion-col col-8>
-                      <h4>ESTEIRA</h4>
-                      <p  class="infoExerc"style="margin: 5px 0;"><ion-icon name="md-swap"></ion-icon>Serie: 1  <ion-icon name="ios-sync-outline"></ion-icon>Repetições: 15</p>
-                      <p class="infoExerc"><ion-icon name="md-speedometer"></ion-icon> Carga: 0,00</p>
-                  </ion-col>
-              </ion-row>
-          </ion-col>
-
-      </ion-row>
 
       </ion-grid>
 

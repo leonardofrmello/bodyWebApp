@@ -34,20 +34,17 @@ page-meus-treinos {
     color: #7ebe8e;
   }
 
+  .vencido{
+    color: red;
+  }
+
   .segment-button{
     height: 100%!important;
-    justify-content: center;
-    align-items: center;
     display: flex;
-    font-weight: bold;
     flex-direction: column;
     color: #fff!important;
     border:none !important;
-  }
-
-  .segment-button ion-icon {
-    line-height: 1.4rem !important;
-    margin-top: 8px !important;
+    font-weight: bold;
   }
 
 }

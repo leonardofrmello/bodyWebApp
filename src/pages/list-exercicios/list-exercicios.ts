@@ -10,8 +10,10 @@ import { BaseServerProvider } from '../../providers/base-server/base-server';
 })
 export class ListExerciciosPage {
 
-  public listExercicios;
+  public listExercicios = [];
   public actionSheet;
+  public botoes;
+  public gpMusc = [];
 
   constructor(
     public navCtrl: NavController,
@@ -20,19 +22,46 @@ export class ListExerciciosPage {
     public baseService: BaseServerProvider,
     ) {
 
-    this.carregaGruposMusculares();
-    //this.carregaListaExercicios();
+    this.carregaListaExercicios();
 
     this.actionSheet = this.actionSheetCtrl.create({
-      title: 'Change the tag of this visitor',
       cssClass: "actionGPMusc"
     });
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ListExerciciosPage');
+
   }
 
+  ionViewWillEnter(){
+
+    this.baseService.postData("Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarListaExerciciosCat=S", false).then((result) => {
+
+      this.gpMusc.push(result);
+      console.log("vallor de gp musc");
+      console.log(this.gpMusc);
+
+      let dados = this.gpMusc[0].data;
+      localStorage.setItem("botoesAction", JSON.stringify(dados));
+
+        for (var i = 0; i < dados.length; i++) {
+            let data = dados[i];
+            this.actionSheet.addButton(
+              {
+                text: dados[i][1],
+                cssClass: "title-img"+dados[i][0],
+                handler: () => {
+                  console.log(data);
+                  this.filtraExercicios(data[0]);
+                }
+              }
+
+            );
+        }
+      })
+
+  }
   //Json de lista de grupo muscular
   //Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarListaExerciciosCat=S
 
@@ -40,82 +69,63 @@ export class ListExerciciosPage {
   //Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarListaExerciciosTotal
 
 
-  carregaGruposMusculares(){
-    this.baseService.postData("Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarListaExerciciosCat=S", false).then((result) => {
-     // this.montaActionSheetGPMusc();
+  //por conta de um erro do action sheet tive que recria-lo
+  recriarAction(){
+    this.actionSheet = "";
 
-     //, cssClass: data.res[i].style
-    console.log(result);
-    let dados = result.data;
-      for (var i = 0; i < dados.length; i++) {
+    this.actionSheet = this.actionSheetCtrl.create({
+      cssClass: "actionGPMusc"
+    });
 
-          this.actionSheet.addButton(
-            {
-              text: dados[i][1],
-              cssClass: "rowActionSheet",
-              icon: 'icon-edition',
-            }
+    let dados = JSON.parse(localStorage.getItem("botoesAction"));
 
-            );
-      }
-      this.actionSheet.addButton({text: 'Cancel', 'role': 'cancel' });
-      this.actionSheet.present();
+    for (var i = 0; i < dados.length; i++) {
+      let data = dados[i];
+      this.actionSheet.addButton(
+        {
+          text: dados[i][1],
+          cssClass: "title-img"+dados[i][0],
+          handler: () => {
+            console.log(data);
+            this.filtraExercicios(data[0]);
+          }
+        }
+
+      );
+  }
+
+    this.actionSheet.present();
+
+  }
+
+  filtraExercicios(gpMusc){
+
+    let lista = JSON.parse(localStorage.getItem("listaExercicios"));
+
+    const filtro = lista.filter(function(value){
+      return value[3] === gpMusc;
     })
+
+    let dados = {
+      "data" : filtro
+    }
+
+    this.listExercicios = [];
+    this.listExercicios.push(dados);
+    this.listExercicios = this.listExercicios[0];
+
   }
 
   carregaListaExercicios(){
-
-    this.baseService.postData("Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarListaExerciciosTotal").then((result : exercicio) => {
-      console.log(result);
-      this.listExercicios = result.data;
-      //console.log(this.listExercicios);
+    this.baseService.postData("Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarListaExerciciosTotal").then((result) => {
+      this.listExercicios.push(result);
+      localStorage.setItem("listaExercicios", JSON.stringify(this.listExercicios[0].data));
+      this.listExercicios = this.listExercicios[0];
     })
-
   }
 
-  presentActionSheet(){
-    this.actionSheet.present();
-  }
-
-  /*montaActionSheetGPMusc(){
-
-    let actionSheet = this.actionSheetCtrl.create({
-      buttons: [
-        {
-          text: 'ABDOMINAIS',
-          handler: () => {
-            console.log('Destructive clicked');
-          }
-        },
-        {
-          text: 'BRAÇOS',
-          handler: () => {
-            console.log('Archive clicked');
-          }
-        },{
-          text: 'COSTAS',
-          handler: () => {
-            console.log('Archive clicked');
-          }
-        },
-      ]
-    });
-
-    actionSheet.present();
-
-  }*/
-
-
-
-
-
-//actionSheet.addButton({text: 'Cancel', 'role': 'cancel' });
-
-//actionSheet.present();
-
-
-  openPage(){
-      this.navCtrl.push(ExercicioPage);
+  openPage(dados){
+      this.navCtrl.push(ExercicioPage, dados);
   }
 
 

@@ -14,7 +14,7 @@
 
   <ion-grid class="listExerc">
 
-    <ion-row (click)="openPage()" *ngFor="let exerc of listExercicios">
+    <ion-row (click)="openPage(exerc)" *ngFor="let exerc of listExercicios.data">
       <ion-col col-5>
         <img src="assets/images/exercicios/{{exerc[0]}}.png" onError="this.src='assets/images/exercicios/0.png'" />
       </ion-col>
@@ -30,7 +30,7 @@
 
 <ion-footer>
   <ion-toolbar>
-    <button ion-button (click)="presentActionSheet()" style="height: inherit;">
+    <button ion-button (click)="recriarAction()" style="height: inherit;">
       <ion-icon name="md-apps"></ion-icon>
     </button>
   </ion-toolbar>

@@ -62,9 +62,75 @@
 
 
 .actionGPMusc {
+
   .rowActionSheet{
-    color: red!important;
-    background: red!important;
-    background-color: red !important;
+    color: #000;
+  }
+
+  .musc:before{
+    width: 50px;
+    height: 50px;
+    background: red;
+    content: “”;
+  }
+
+  .action-sheet-group{
+    border-radius: 10px;
+  }
+
+  .button-inner{
+    font-size: 15px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    left: 0;
+    color: #000;
+    justify-content: left !important;
+    padding-left: 80px !important;
+  }
+
+
+  button{
+    background: #fff!important;
+    position: relative;
+  }
+
+  button::before{ // if you want the image on the left of the title
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 50px;
+    width: 50px;
+    content: "";
+    display: block;
+  }
+
+  .title-img1::before{
+    background-image: url("../assets/images/musculos/ABS_ICON_2X.PNG");
+  }
+
+  .title-img2::before{
+    background-image: url("../assets/images/musculos/ARMS_ICON_2X.png");
+  }
+  .title-img3::before{
+    background-image: url("../assets/images/musculos/BACK_ICON_2X.png");
+  }
+  .title-img4::before{
+    background-image: url("../assets/images/musculos/CHEST_ICON_2X.png");
+  }
+  .title-img5::before{
+    background-image: url("../assets/images/musculos/SHOULDERS_ICON_2X.png");
+  }
+  .title-img6::before{
+    background-image: url("../assets/images/musculos/LEGS_ICON_2X.png");
+  }
+  .title-img7::before{
+    background-image: url("../assets/images/musculos/ICON_ELLIPTICAL.png");
+  }
+  .title-img8::before{
+    background-image: url("../assets/images/musculos/ICON_LEG_STRETCH.png");
+  }
+  .title-img9::before{
+    background-image: url("../assets/images/musculos/PULLOVER_ON_STABILITY_BALL_WITH_WEIGHT.png");
   }
 }
