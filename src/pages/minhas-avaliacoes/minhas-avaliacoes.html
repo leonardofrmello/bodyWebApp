@@ -11,27 +11,11 @@
 
   <ion-grid class="listAval">
 
-    <ion-row (click)="openPage()">
+    <ion-row (click)="openPage()" *ngFor="let l of listAval">
       <ion-col class="boxAval" col-12 padding>
-        <h5 class="title">Manoel Lucio Arujo Filho</h5>
-        <h6><ion-icon name="ios-arrow-forward"></ion-icon> CONCLUIDO</h6>
-        <p> <span><ion-icon name="md-calendar"></ion-icon> Data:</span> 20/07/2018</p>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col class="boxAval" col-12 padding>
-        <h5 class="title">Manoel Lucio Arujo Filho</h5>
-        <h6><ion-icon name="ios-arrow-forward"></ion-icon> CONCLUIDO</h6>
-        <p> <span><ion-icon name="md-calendar"></ion-icon> Data:</span> 20/07/2018</p>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col class="boxAval" col-12 padding>
-        <h5 class="title">Manoel Lucio Arujo Filho</h5>
-        <h6><ion-icon name="ios-arrow-forward"></ion-icon> CONCLUIDO</h6>
-        <p> <span><ion-icon name="md-calendar"></ion-icon> Data:</span> 20/07/2018</p>
+        <h5 class="title">{{l[2]}}</h5>
+        <h6><ion-icon name="ios-arrow-forward"></ion-icon> {{l[3]}}</h6>
+        <p> <span><ion-icon name="md-calendar"></ion-icon> Data:</span> {{l[1]}}</p>
       </ion-col>
     </ion-row>
 

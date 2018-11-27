@@ -24,6 +24,7 @@ export class MyApp {
   pages: Array<{title: string, component: any, icon: string}>;
   public userSession: Pessoa;
   public foto: string;
+  public nome: string;
 
   constructor(
     public platform: Platform,
@@ -54,6 +55,7 @@ export class MyApp {
     events.subscribe('user:foto', () => {
       let dados = JSON.parse(localStorage.getItem("JsonPerfil"));
       this.foto = "http://finance.dragon296.startdedicated.com/Pessoas/"+this.baseService.dataBase+"/Clientes/"+dados.IDALUNO+".png";
+      this.nome = dados.NOME;
     });
 
   }
@@ -69,6 +71,12 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+
+    if(JSON.parse(localStorage.getItem("JsonPerfil")) != undefined){
+      let dados = JSON.parse(localStorage.getItem("JsonPerfil"));
+      this.foto = "http://finance.dragon296.startdedicated.com/Pessoas/"+this.baseService.dataBase+"/Clientes/"+dados.IDALUNO+".png";
+      this.nome = dados.NOME;
+    }
   }
 
   openPage(page) {

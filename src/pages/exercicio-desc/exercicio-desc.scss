@@ -2,8 +2,10 @@ page-exercicio-desc {
 
   .imgExerc{
     width: 70%;
-    border: 2px solid;
+    border: 2px solid #cccccc;
+    border-bottom: 4px solid #cccccc;
     border-radius: 1rem;
+    background: #fff;
   }
 
   .slide-zoom{
@@ -17,6 +19,8 @@ page-exercicio-desc {
   .boxRepeticoes div{
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
+    font-size: 14px;
   }
 
   ion-input{
@@ -37,5 +41,66 @@ page-exercicio-desc {
 
   .contentRepet{
     background: #fff;
+    padding: 10px;
+    color: #9c9c9c;
   }
+
+  .btnExec{
+    -webkit-box-shadow: 6px 15px 14px -10px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 6px 15px 14px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 6px 15px 14px -10px rgba(0, 0, 0, 0.75);
+  }
+
+  h3{
+    color: #09b7a5;
+  }
+
+  h5{
+    color: #62cfc6;
+    margin: 0;
+  }
+
+  p{
+    color: #979797;
+    padding-left: 5px;
+  }
+
+  .contentSlider{
+    overflow: scroll !important;
+    height: 100% !important;
+  }
+
+  .btnPrev, .btnNext{
+    position: absolute;
+    z-index: 9999;
+    top: 26%;
+    background: transparent;
+  }
+
+  .btnPrev ion-icon, .btnNext ion-icon{
+    color: #00b1a5;
+    font-size: 4em;
+  }
+
+  .button.activated{
+    background-color: transparent;
+  }
+
+  .btnPrev{
+    left: 0;
+  }
+
+  h3{
+    font-size: 1.7rem;
+  }
+
+  .btnNext{
+    right: 0;
+  }
+
+  .contentImgExerc{
+    position: relative;
+    width: 100%;
+  }
+
 }

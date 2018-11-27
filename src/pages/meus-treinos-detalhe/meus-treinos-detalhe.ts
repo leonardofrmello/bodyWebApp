@@ -18,7 +18,6 @@ export class MeusTreinosDetalhePage {
     public navParams: NavParams,
     public baseService: BaseServerProvider
     ) {
-      console.log(navParams);
       this.detalhesTreino = navParams.data;
       this.carregaTreino(navParams.data[0]);
   }
@@ -37,7 +36,7 @@ export class MeusTreinosDetalhePage {
 
   openPage(){
     console.log("troca page");
-    this.navCtrl.push(ExercicioDescPage);
+    this.navCtrl.push(ExercicioDescPage, this.listExerc);
   }
 
 }

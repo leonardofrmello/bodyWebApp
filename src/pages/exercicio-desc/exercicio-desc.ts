@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 
 
 @IonicPage()
@@ -9,11 +9,31 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ExercicioDescPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  @ViewChild(Slides) slides: Slides;
+
+  public lista;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams
+
+    ) {
+
+      this.lista = navParams.data.data;
+      console.log(this.lista);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ExercicioDescPage');
+  }
+
+
+  next() {
+    this.slides.slideNext();
+  }
+
+  prev() {
+    this.slides.slidePrev();
   }
 
 }

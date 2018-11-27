@@ -1,6 +1,9 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Exercicio</ion-title>
   </ion-navbar>
 
@@ -11,52 +14,57 @@
 
   <ion-slides>
 
-    <ion-slide>
+    <ion-slide *ngFor="let l of lista">
+      <ion-row class="contentSlider">
+        <div class="contentImgExerc">
+          <ion-col>
+              <ion-row>
+                  <ion-col col-12>
+                      <img src="assets/images/exercicios/{{l[0]}}.png" onError="this.src='assets/images/exercicios/0.png'" class="imgExerc" />
+                      <h3>{{l[1]}}</h3>
+                      <h5>Grupo Muscular: {{l[12]}}</h5>
+                  </ion-col>
+              </ion-row>
+          </ion-col>
 
-      <ion-row>
-
-        <ion-col>
-            <ion-row>
-                <ion-col col-12>
-                    <img src="{{'./assets/images/exercicios/0.png'}}" class="imgExerc" />
-                    <h3>LEG PRESS HORIZONTAL</h3>
-                    <h5>Grupo Muscular: PERNAS</h5>
-                </ion-col>
-            </ion-row>
-        </ion-col>
+          <button float-left ion-button  class="btnPrev" (click)="prev()">
+              <ion-icon name="md-arrow-dropleft"></ion-icon>
+          </button>
+          <button float-right ion-button class="btnNext" (click)="next()">
+              <ion-icon name="md-arrow-dropright"></ion-icon>
+          </button>
+        </div>
 
         <div class="boxBtnExec" padding-top padding-bottom>
-          <button ion-button  class="bkgTema">EXERCUTAR EXERCICIO</button>
+          <button ion-button  class="bkgTema btnExec">EXERCUTAR EXERCICIO</button>
         </div>
 
         <p text-left>Séries</p>
 
         <div class="contentRepet">
+
           <div class="boxRepeticoes">
-            <div>1 Repetiçao: <ion-input type="text"></ion-input></div>
+            <div>1º Repetiçao: <ion-input type="text"></ion-input></div>
             <div>Carga: <ion-input type="text"></ion-input></div>
           </div>
+
           <div class="boxRepeticoes">
-            <div>1 Repetiçao: <ion-input type="text"></ion-input></div>
+            <div>2º Repetiçao: <ion-input type="text"></ion-input></div>
             <div>Carga: <ion-input type="text"></ion-input></div>
           </div>
+
+          <div class="boxRepeticoes">
+              <div>3º Repetiçao: <ion-input type="text"></ion-input></div>
+              <div>Carga: <ion-input type="text"></ion-input></div>
+          </div>
+
         </div>
 
-
-
-    </ion-row>
-
-
+      </ion-row>
     </ion-slide>
-
-    <ion-slide>
-      <h1>Slide 2</h1>
-    </ion-slide>
-
-    <ion-slide>
-      <h1>Slide 3</h1>
-    </ion-slide>
+    <!-- fim do slider-->
 
   </ion-slides>
+
 
 </ion-content>
