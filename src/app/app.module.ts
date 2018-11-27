@@ -20,6 +20,7 @@ import { CadEvolucaoModalPageModule } from '../pages/cad-evolucao-modal/cad-evol
 import { AvaliacaoPageModule } from '../pages/avaliacao/avaliacao.module';
 import { ExercicioDescPageModule } from '../pages/exercicio-desc/exercicio-desc.module';
 import { ExercicioPageModule } from '../pages/exercicio/exercicio.module';
+import { AmChartsModule } from "@amcharts/amcharts3-angular";
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { ExercicioPageModule } from '../pages/exercicio/exercicio.module';
     CadEvolucaoModalPageModule,
     AvaliacaoPageModule,
     ExercicioDescPageModule,
-    ExercicioPageModule
+    ExercicioPageModule,
+    AmChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -16,4 +16,34 @@ page-avaliacao {
     border-bottom: 4px solid;
   }
 
+  ion-col{
+    background: #fff;
+    border: #dedede solid;
+  }
+
+  .grid{
+    padding: 12px;
+  }
+
+  p span{
+    color: #b9b9b9;
+  }
+
+  h4{
+    font-size: 1.5rem;
+    margin-top: 0;
+  }
+
+  .col{
+    padding: 12px !important;
+    margin-bottom: 10px;
+  }
+
+  .col div{
+    border: #dedede solid 2px;
+  }
+
+  p{
+    font-size: 1.5rem;
+  }
 }

@@ -10,10 +10,10 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content class="bkgPages">
 
     <ion-toolbar>
-        <ion-segment [(ngModel)]="icons" class="subHeaderAval">
+        <ion-segment [(ngModel)]="typeAval" class="subHeaderAval">
           <ion-segment-button value="composicao">
             Composição Corporal
           </ion-segment-button>
@@ -22,5 +22,67 @@
           </ion-segment-button>
         </ion-segment>
       </ion-toolbar>
+
+      <ion-grid [ngSwitch]="typeAval">
+
+          <ion-row *ngSwitchCase="'composicao'">
+
+              <ion-col col-12>
+                  <h4>Avaliador: MANOEL LUCIO ARAUJO FILHO</h4>
+                  <p margin-vertical style="margin-bottom:0;"> <ion-icon name="md-calendar"></ion-icon> Data: <span>20/07/2018</span> <ion-icon name="md-clipboard" style="margin-left: 5px;"></ion-icon> <span>CONCLUIDO</span></p>
+              </ion-col>
+
+              <ion-col col-12>
+
+                  <div margin-vertical>
+                      <div id="chartdiv" style="width:100%;height:500px;"></div>
+                  </div>
+
+                  <div style="border-bottom: none;" padding>
+                    <p no-margin>Percentual de Gordura Atual: 19.01%</p>
+                  </div>
+
+                  <div margin-bottom padding>
+                    <p no-margin> Percentual de Gordura Meta: 22.00%</p>
+                  </div>
+
+                  <div padding>
+                   <p no-margin>Você está a <span>2.99%</span> de atingir a sua Meta!</p>
+                  </div>
+
+              </ion-col>
+
+          </ion-row>
+
+          <ion-row *ngSwitchCase="'anamnese'">
+
+                  <ion-col col-12>
+                      <h4>Avaliador: MANOEL LUCIO ARAUJO FILHO</h4>
+                      <p margin-vertical style="margin-bottom:0;"> <ion-icon name="md-calendar"></ion-icon> Data: <span>20/07/2018</span> <ion-icon name="md-clipboard" style="margin-left: 5px;"></ion-icon> <span>CONCLUIDO</span></p>
+                  </ion-col>
+
+                  <ion-col col-12 style="margin-bottom:0;">
+                    grafico
+                  </ion-col>
+
+                  <ion-col col-12 style="border-top:0;">
+                      <p>Classificação: <b>OBESIDADE LEVE</b></p>
+                      <p>Riscos a Saúde: <b>RISCO MODERADO</b></p>
+                  </ion-col>
+
+                  <ion-col col-12 style="margin-bottom:0;">
+                      grafico
+                    </ion-col>
+
+                    <ion-col col-12 style="border-top:0;">
+                        <p>Classificação: <b>MUITO ALTO</b></p>
+                    </ion-col>
+
+          </ion-row>
+
+      </ion-grid>
+
+
+
 
 </ion-content>
