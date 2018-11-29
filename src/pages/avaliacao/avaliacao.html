@@ -25,7 +25,7 @@
 
       <ion-grid [ngSwitch]="typeAval">
 
-          <ion-row *ngSwitchCase="'composicao'">
+          <ion-row [hidden]="typeAval != 'composicao'">
 
               <ion-col col-12>
                   <h4>Avaliador: MANOEL LUCIO ARAUJO FILHO</h4>
@@ -34,9 +34,10 @@
 
               <ion-col col-12>
 
-                  <div margin-vertical>
+                  <!---<div margin-vertical>
                       <div id="chartdiv" style="width:100%;height:500px;"></div>
-                  </div>
+                  </div>-->
+
 
                   <div style="border-bottom: none;" padding>
                     <p no-margin>Percentual de Gordura Atual: 19.01%</p>
@@ -54,7 +55,7 @@
 
           </ion-row>
 
-          <ion-row *ngSwitchCase="'anamnese'">
+          <ion-row  [hidden]="typeAval != 'anamnese'">
 
                   <ion-col col-12>
                       <h4>Avaliador: MANOEL LUCIO ARAUJO FILHO</h4>
@@ -62,20 +63,20 @@
                   </ion-col>
 
                   <ion-col col-12 style="margin-bottom:0;">
-                    grafico
+                    <div id="graficoIMC" style="width:100%;height:300px;"></div>
                   </ion-col>
 
                   <ion-col col-12 style="border-top:0;">
-                      <p>Classificação: <b>OBESIDADE LEVE</b></p>
-                      <p>Riscos a Saúde: <b>RISCO MODERADO</b></p>
+                      <p>Classificação: <b>{{classificIMC}}</b></p>
+                      <p>Riscos a Saúde: <b>{{risco}}</b></p>
                   </ion-col>
 
                   <ion-col col-12 style="margin-bottom:0;">
-                      grafico
-                    </ion-col>
+                      <div id="graficoICQ" style="width:100%;height:300px;"></div>
+                  </ion-col>
 
                     <ion-col col-12 style="border-top:0;">
-                        <p>Classificação: <b>MUITO ALTO</b></p>
+                        <p>Classificação: <b>{{classificacaoIcq}}</b></p>
                     </ion-col>
 
           </ion-row>

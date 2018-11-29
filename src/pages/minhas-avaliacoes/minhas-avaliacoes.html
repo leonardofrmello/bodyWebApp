@@ -11,7 +11,7 @@
 
   <ion-grid class="listAval">
 
-    <ion-row (click)="openPage()" *ngFor="let l of listAval">
+    <ion-row (click)="openPage(l)" *ngFor="let l of listAval">
       <ion-col class="boxAval" col-12 padding>
         <h5 class="title">{{l[2]}}</h5>
         <h6><ion-icon name="ios-arrow-forward"></ion-icon> {{l[3]}}</h6>

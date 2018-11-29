@@ -24,8 +24,8 @@ export class MinhasAvaliacoesPage {
     this.carregarAvaliacoes();
   }
 
-  openPage(){
-    this.navCtrl.push(AvaliacaoPage);
+  openPage(dados){
+    this.navCtrl.push(AvaliacaoPage, dados);
   }
 
   carregarAvaliacoes(){
@@ -33,7 +33,6 @@ export class MinhasAvaliacoesPage {
       this.listAval.length = 0;
       this.listAval.push(result);
       this.listAval = this.listAval[0].data;
-      console.log(this.listAval);
     })
   }
 
