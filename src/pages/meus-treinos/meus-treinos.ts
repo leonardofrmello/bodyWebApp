@@ -17,6 +17,11 @@ export class MeusTreinosPage {
   public treinoHoje= [];
   public treinosVencidos = [];
 
+  public NothignToday = false;
+  public NothignAtivo = false;
+  public NothignTodos = false;
+  public NothignVencidos = false;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -43,6 +48,7 @@ export class MeusTreinosPage {
   }
 
   organizaTreino(dados){
+
     let data = dados.data;
     let dataHoje = moment().format("YYYY/MM/DD");
     let dia = new Date();
@@ -71,8 +77,13 @@ export class MeusTreinosPage {
 
       }
     }
-
     this.treinosTodos = data;
+
+    this.NothignToday = (this.treinoHoje.length == 0 ? false : true);
+    this.NothignAtivo = (this.treinosAtivos.length == 0 ? false : true);
+    this.NothignVencidos = (this.treinosVencidos.length == 0 ? false : true);
+    this.NothignTodos = (this.treinosTodos.length == 0 ? false : true);
+
   }
 
   openPage(dados){

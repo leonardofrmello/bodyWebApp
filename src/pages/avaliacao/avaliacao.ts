@@ -13,6 +13,7 @@ export class AvaliacaoPage {
   public chart: AmChart;
   public chart2: AmChart;
   public typeAval:string = "composicao";
+  public Avaliacao;
   public dadosAval;
   public dadosAluno;
 
@@ -22,110 +23,37 @@ export class AvaliacaoPage {
   public imc;
   public icq;
 
+  public composicao = [];
+  public percGord;
+  public percGordMeta;
+  public percGordDif;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public baseService: BaseServerProvider,
     private AmCharts: AmChartsService
     ) {
-      console.log(this.navParams.data[0]);
+      this.Avaliacao = this.navParams.data;
+      console.log(this.Avaliacao);
       this.dadosAluno = JSON.parse(localStorage.getItem("JsonPerfil"));
+
+      //Graficos de IMC e IRQ
       this.carregaAvaliacao(this.navParams.data[0]);
+      this.carregaAntropometria(this.navParams.data[0]);
   }
 
-  ionViewDidLoad() {
 
-  }
 
-  montaGraficoIMC(imc, classific, risco){
-    this.AmCharts.makeChart("graficoIMC", {
-      "type": "serial",
-      "theme": "light",
-      "dataProvider" : [
-        {"resultado": "", "Minimo": 18.5, "Meta": imc, "Maximo": 24.9}
-      ],
-      "startDuration": 1,
-      "graphs": [
-          {
-            "fillAlphas": 0.9,
-            "title": "Minimo", "type": "column", "valueField": "Minimo",
-            "labelText": "Minimo", "lineColor": "#B0C4DE","balloonText": "<span style='font-size:13px;'>Indice Mínimo :<b>[[value]]</span>"
+  carregaAntropometria(id){
+    this.baseService.postData("Avaliacoes/AvaliacaoAjax.php?callback=JSON_CALLBACK&BuscarAvaliacaoAntropometriaTodos=T", false).then((result) => {
+      let filtro = result.data.filter(function(dados){
+        return dados[0] == id;
+      });
 
-          },
-          {
-            "fillAlphas": 0.9, "alphaField": "alpha", "labelText": "Obtido", "lineAlpha": 0.1, "title": "Meta", "type": "column", "valueField": "Meta", "lineColor": (imc > 24.9 || imc < 18.5) ? "#FF6347" : "#66CDAA", "dashLengthField": "dashLengthColumn", "balloonText": "<span style='font-size:13px;'>Indice Obtido: <b>[[value]] </b> </span>\n\<span style='font-size:13px;'>Classificação: <b>" + classific +"</b> </span>\n\<span style='font-size:13px;'>Riscos a Saúde: <b>" + risco +"</b> </span>"},
-          {
-            "fillAlphas": 0.9, "labelText": "Máximo", "lineAlpha": 0.2, "title": "Máximo", "type": "column", "valueField": "Maximo", "lineColor": "#B0C4DE", "balloonText": "<span style='font-size:13px;'>Indice Máximo :<b>[[value]]</span>",
-          }
-        ]
-
+      this.montaGraficoAntropo(filtro[0]);
     })
-  }
-
-  montaGraficoICQ(icq, sexo, idade){
-
-
-     /* $scope.anamnese.push({
-        0 : results.rows.item(0).PESO,
-        1 : results.rows.item(0).ALTURA,
-        2 : results.rows.item(0).CINTURA,
-        3 : results.rows.item(0).QUADRIL,
-        4 : results.rows.item(0).IDADE,
-        5 : results.rows.item(0).SEXO === 'MASCULINO' ? "1" : "0",
-        6 : results.rows.item(0).GORD_ATUAL_EVOL,
-        7 : results.rows.item(0).NOME,
-        8 : results.rows.item(0).STATUS,
-        9 : results.rows.item(0).DATA_EVOL
-    });*/
-
-      //this.dadosAval
-
-    this.AmCharts.makeChart("graficoICQ", {
-      "type": "serial",
-      "theme": "light",
-      "dataProvider" : [
-        {
-          "resultado": "",
-          "Minimo": this.valRisco("B",sexo,idade),
-          "Meta": icq,
-          "Maximo": this.valRisco("A",sexo,idade)
-        }
-      ],
-      "startDuration": 1,
-      "graphs": [
-        {"fillAlphas": 0.9, "labelText": "[[value]]", "lineAlpha": 0.1, "title": "Minimo", "type": "column", "valueField": "Minimo", "labelText": "Baixo", "lineColor": "#B0C4DE","balloonText": "<span style='font-size:13px;'>Indice Baixo Risco :<b>[[value]]</span>"},
-
-        {
-          "fillAlphas": 0.9,
-          "alphaField": "alpha",
-          "labelText": "Obtido", "lineAlpha": 0.1, "title": "Meta",
-          "type": "column", "valueField": "Meta",
-          "lineColor": (icq > this.valRisco("A",sexo,idade)) ? "#FF6347" : "#66CDAA",
-          "dashLengthField": "dashLengthColumn", "balloonText": "<span style='font-size:13px;'>Indice Obtido: <b>[[value]] </b> </span>\n\<span style='font-size:13px;'>Classificação: <b>" + this.classICQ(icq,sexo,idade) +"</b> </span>"},
-
-        {"fillAlphas": 0.9, "labelText": "Alto", "lineAlpha": 0.2, "title": "Máximo", "type": "column", "valueField": "Maximo", "lineColor": "#B0C4DE", "balloonText": "<span style='font-size:13px;'>Indice Alto Risco :<b>[[value]]</span>","lineColor": "#B0C4DE"}
-      ],
-
-    })
-
-    /*$scope.grICQOptions = {
-      data: [
-        {"resultado": "", "Minimo": $scope.valRisco("B",$scope.anamnese[0][5],$scope.anamnese[0][4]), "Meta": $scope.icq, "Maximo": $scope.valRisco("A",$scope.anamnese[0][5],$scope.anamnese[0][4])}
-      ],
-      "type": "serial", "theme": "light",  "autoMargins": true, "startDuration": 1,
-      "valueAxes": [{"gridPosition": "start", "axisAlpha": 0, "tickLength": 0}],
-
-      "graphs": [
-        {"fillAlphas": 0.9, "labelText": "[[value]]", "lineAlpha": 0.1, "title": "Minimo", "type": "column", "valueField": "Minimo", "labelText": "Baixo", "lineColor": "#B0C4DE","balloonText": "<span style='font-size:13px;'>Indice Baixo Risco :<b>[[value]]</span>"},
-        {"fillAlphas": 0.9, "alphaField": "alpha", "labelText": "Obtido", "lineAlpha": 0.1, "title": "Meta", "type": "column", "valueField": "Meta", "lineColor": ($scope.icq > $scope.valRisco("A",$scope.anamnese[0][5],$scope.anamnese[0][4])) ? "#FF6347" : "#66CDAA", "dashLengthField": "dashLengthColumn", "balloonText": "<span style='font-size:13px;'>Indice Obtido: <b>[[value]] </b> </span>\n\<span style='font-size:13px;'>Classificação: <b>" + $scope.classICQ($scope.icq,0,29) +"</b> </span>"},
-        {"fillAlphas": 0.9, "labelText": "Alto", "lineAlpha": 0.2, "title": "Máximo", "type": "column", "valueField": "Maximo", "lineColor": "#B0C4DE", "balloonText": "<span style='font-size:13px;'>Indice Alto Risco :<b>[[value]]</span>","lineColor": "#B0C4DE"}
-      ],
-
-        "categoryField": "resultado"
-    }; */
-
-  }
-
+  }//// fim carregaAntropometria
 
   carregaAvaliacao(idAval){
 
@@ -141,6 +69,7 @@ export class AvaliacaoPage {
 
       //valor retornado da avaliacao
       this.dadosAval = filtro[0];
+      console.log(this.dadosAval);
 
       if (this.dadosAval.ALTURA_EVOL > 0 && this.dadosAval.ALTURA_EVOL < 3) {
           this.imc = this.dadosAval.PESO_EVOL / (this.dadosAval.ALTURA_EVOL * this.dadosAval.ALTURA_EVOL);
@@ -151,19 +80,206 @@ export class AvaliacaoPage {
           this.icq = this.dadosAval.CINTURA_EVOL / this.dadosAval.QUADRIL_EVOL;
           this.icq = this.icq.toFixed(2);
       }
-
-
       this.classificIMC = this.classIMC(this.imc, "P", sexo);
       this.risco =  this.classIMC(this.imc,"S", sexo);
-
-      //$scope.valRisco("A",$scope.anamnese[0][5],$scope.anamnese[0][4])
-
       this.classificacaoIcq = this.classICQ(this.icq, 0, 29);
+
 
       this.montaGraficoIMC(this.imc, this.classificIMC, this.risco);
       this.montaGraficoICQ(this.icq, sexo, idade);
-
      })
+
+  }//////// fim carrega avaliacao
+
+
+  montaGraficoAntropo(dados){
+
+    if(dados != undefined){
+
+      if(dados[7] > 0 && dados[8] > 0){
+
+        this.composicao.push(
+          {
+            year : 'Atual',
+            gorda : dados[1],
+            ossea : dados[7],
+            residual : dados[8],
+            muscular : dados[9]
+          },
+          {
+            year : 'Meta',
+            gorda : dados[2],
+            ossea : dados[7],
+            residual : dados[8],
+            muscular : dados[10]
+          },{
+            year : 'Ideal',
+            gorda : dados[3],
+            ossea : dados[7],
+            residual : dados[8],
+            muscular : dados[11]
+        }
+      );
+
+      }else{
+        this.composicao.push({
+          year : 'Atual',
+          gorda : dados[1],
+          magra : dados[4]
+        },
+        {
+          year : 'Meta',
+          gorda : dados[2],
+          magra : dados[5]
+        },{
+          year : 'Ideal',
+          gorda : dados[3],
+          magra : dados[6]
+        });
+      }
+
+    }else{
+        this.composicao.push({
+          year : 'Atual',
+          gorda : 0,
+          magra : 0
+      },
+      {
+          year : 'Meta',
+          gorda : 0,
+          magra : 0
+      },{
+          year : 'Ideal',
+          gorda : 0,
+          magra : 0
+      });
+    }
+
+    if(this.composicao[0].ossea !== undefined){
+      console.log("ossear diferente e unfined");
+      this.percGord = (parseFloat(this.composicao[0].gorda) * 100 / (parseFloat(this.composicao[0].gorda) + parseFloat(this.composicao[0].muscular) + parseFloat(this.composicao[0].ossea) + parseFloat(this.composicao[0].residual))).toFixed(2);
+      this.percGordMeta = (parseFloat(this.composicao[1].gorda) * 100 / (parseFloat(this.composicao[1].gorda) + parseFloat(this.composicao[1].muscular) + parseFloat(this.composicao[1].ossea) + parseFloat(this.composicao[1].residual))).toFixed(2);
+
+      this.AmCharts.makeChart("graficoAvaliacao", {
+        "type": "serial",
+        "theme": "light",
+        "dataProvider" : this.composicao,
+        "startDuration": 1,
+        "valueAxes": [{ "stackType": "100%", "axisAlpha": 0.3, "gridAlpha": 0.1 }],
+        "graphs": [
+          {
+            "fillAlphas": 0.9,
+            "labelText": "[[percents]] %",
+            "lineAlpha": 0.5,
+            "title": "Gordura",
+            "type": "column",
+            "category" : "Atual",
+            "lineColor": "#FF7F50",
+            "valueField": "gorda",
+            "balloonText": "[[title]], [[category]]<br><span style='font-size:14px;'><b>[[value]]</b> ([[percents]]%)</span>" },
+          { "fillAlphas": 0.9, "labelText": "[[percents]] %", "lineAlpha": 0.5, "title": "Ossea", "type": "column", "lineColor": "#B0C4DE", "valueField": "ossea", "balloonText": "[[title]], [[category]]<br><span style='font-size:14px;'><b>[[value]]</b> ([[percents]]%)</span>" },
+          { "fillAlphas": 0.9, "labelText": "[[percents]] %", "lineAlpha": 0.5, "title": "Residual", "type": "column", "lineColor": "#66CDAA", "valueField": "residual", "balloonText": "[[title]], [[category]]<br><span style='font-size:14px;'><b>[[value]]</b> ([[percents]]%)</span>" },
+          { "fillAlphas": 0.9, "labelText": "[[percents]] %", "lineAlpha": 0.5, "title": "Muscular", "type": "column", "lineColor": "#44b6ae", "valueField": "muscular", "balloonText": "[[title]], [[category]]<br><span style='font-size:14px;'><b>[[value]]</b> ([[percents]]%)</span>" }
+
+        ],
+        "categoryField" : "year"
+      })
+
+    }else{
+      console.log("ossear eh unfined");
+      this.percGord = (parseFloat(this.composicao[0].gorda) * 100 / (parseFloat(this.composicao[0].gorda) + parseFloat(this.composicao[0].magra))).toFixed(2);
+      this.percGordMeta = (parseFloat(this.composicao[1].gorda) * 100 / (parseFloat(this.composicao[1].gorda) + parseFloat(this.composicao[1].magra))).toFixed(2);
+
+      this.AmCharts.makeChart("graficoAvaliacao", {
+        "type": "serial",
+        "theme": "light",
+        "dataProvider" : this.composicao,
+        "startDuration": 1,
+        "valueAxes": [{ "stackType": "100%", "axisAlpha": 0.3, "gridAlpha": 0.1 }],
+        "graphs": [
+          { "fillAlphas": 0.9, "labelText": "[[percents]] %", "lineAlpha": 0.5, "title": "Gordura", "type": "column", "lineColor": "#FF7F50", "valueField": "gorda", "balloonText": "[[title]], [[category]]<br><span style='font-size:14px;'><b>[[value]]</b> ([[percents]]%)</span>" },
+          { "fillAlphas": 0.9, "labelText": "[[percents]] %", "lineAlpha": 0.5, "title": "Magra", "type": "column", "lineColor": "#44b6ae", "valueField": "magra", "balloonText": "[[title]], [[category]]<br><span style='font-size:14px;'><b>[[value]]</b> ([[percents]]%)</span>" }
+        ],
+        "categoryField" : "year"
+      })
+    }
+
+    this.percGordDif = Math.abs((this.percGord - this.percGordMeta).toFixed(2));
+
+  }
+
+  montaGraficoIMC(imc, classific, risco){
+
+    this.AmCharts.makeChart("graficoIMC", {
+      "type": "serial",
+      "theme": "light",
+      "dataProvider" : [
+        {"resultado": "", "Minimo": 18.5, "Meta": imc, "Maximo": 24.9}
+      ],
+      "startDuration": 1,
+      "graphs": [
+          {
+            "fillAlphas": 0.9,
+            "title": "Minimo", "type": "column", "valueField": "Minimo",
+            "labelText": "Minimo",
+            "lineColor": "#B0C4DE","balloonText": "<span style='font-size:13px;'>Indice Mínimo :<b>[[value]]</span>"
+          },
+          {
+            "fillAlphas": 0.9, "alphaField": "alpha",
+            "labelText": "Obtido",
+            "lineAlpha": 0.1, "title": "Meta",
+            "type": "column", "valueField": "Meta",
+            "lineColor": (imc > 24.9 || imc < 18.5) ? "#FF6347" : "#66CDAA",
+            "dashLengthField": "dashLengthColumn", "balloonText": "<span style='font-size:13px;'>Indice Obtido: <b>[[value]] </b> </span>\n\<span style='font-size:13px;'>Classificação: <b>" + classific +"</b> </span>\n\<span style='font-size:13px;'>Riscos a Saúde: <b>" + risco +"</b> </span>"},
+          {
+            "fillAlphas": 0.9,
+            "labelText": "Máximo",
+            "lineAlpha": 0.2, "title": "Máximo", "type": "column",
+            "valueField": "Maximo", "lineColor": "#B0C4DE", "balloonText": "<span style='font-size:13px;'>Indice Máximo :<b>[[value]]</span>",
+          }
+        ]
+
+    })
+
+  }
+
+  montaGraficoICQ(icq, sexo, idade){
+
+    this.AmCharts.makeChart("graficoICQ", {
+      "type": "serial",
+      "theme": "light",
+      "dataProvider" : [
+        {
+          "resultado": "",
+          "Minimo": this.valRisco("B",sexo,idade),
+          "Meta": icq,
+          "Maximo": this.valRisco("A",sexo,idade)
+        }
+      ],
+      "startDuration": 1,
+      "graphs": [
+        {
+          "fillAlphas": 0.9,
+          "lineAlpha": 0.1,
+          "title": "Minimo",
+          "type": "column",
+          "valueField": "Minimo",
+          "labelText": "Baixo",
+          "lineColor": "#B0C4DE",
+          "balloonText": "<span style='font-size:13px;'>Indice Baixo Risco :<b>[[value]]</span>"},
+
+        {
+          "fillAlphas": 0.9,
+          "alphaField": "alpha",
+          "labelText": "Obtido", "lineAlpha": 0.1, "title": "Meta",
+          "type": "column", "valueField": "Meta",
+          "lineColor": (icq > this.valRisco("A",sexo,idade)) ? "#FF6347" : "#66CDAA",
+          "dashLengthField": "dashLengthColumn", "balloonText": "<span style='font-size:13px;'>Indice Obtido: <b>[[value]] </b> </span>\n\<span style='font-size:13px;'>Classificação: <b>" + this.classICQ(icq,sexo,idade) +"</b> </span>"},
+
+        {"fillAlphas": 0.9, "labelText": "Alto", "lineAlpha": 0.2, "title": "Máximo", "type": "column", "valueField": "Maximo", "lineColor": "#B0C4DE", "balloonText": "<span style='font-size:13px;'>Indice Alto Risco :<b>[[value]]</span>","lineColor": "#B0C4DE"}
+      ],
+
+    })
 
   }
 

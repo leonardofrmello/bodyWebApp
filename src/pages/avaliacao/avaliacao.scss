@@ -10,6 +10,8 @@ page-avaliacao {
     font-weight: 500;
   }
 
+  .amcharts-chart-div a {display:none !important;}
+
   .subHeaderAval .segment-button.segment-activated{
     border: 0;
     border-radius: 0;
@@ -39,7 +41,7 @@ page-avaliacao {
     margin-bottom: 10px;
   }
 
-  .col div{
+  .col .contener{
     border: #dedede solid 2px;
   }
 

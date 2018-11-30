@@ -28,27 +28,27 @@
           <ion-row [hidden]="typeAval != 'composicao'">
 
               <ion-col col-12>
-                  <h4>Avaliador: MANOEL LUCIO ARAUJO FILHO</h4>
-                  <p margin-vertical style="margin-bottom:0;"> <ion-icon name="md-calendar"></ion-icon> Data: <span>20/07/2018</span> <ion-icon name="md-clipboard" style="margin-left: 5px;"></ion-icon> <span>CONCLUIDO</span></p>
+                  <h4>Avaliador: {{Avaliacao[2]}}</h4>
+                  <p margin-vertical style="margin-bottom:0;"> <ion-icon name="md-calendar"></ion-icon> Data: <span>{{Avaliacao[1]}}</span> <ion-icon name="md-clipboard" style="margin-left: 5px;"></ion-icon> <span>CONCLUIDO</span></p>
               </ion-col>
 
               <ion-col col-12>
 
-                  <!---<div margin-vertical>
-                      <div id="chartdiv" style="width:100%;height:500px;"></div>
-                  </div>-->
-
-
-                  <div style="border-bottom: none;" padding>
-                    <p no-margin>Percentual de Gordura Atual: 19.01%</p>
+                  <div margin-vertical class="contener">
+                      <div id="graficoAvaliacao" style="width:100%;height:250px;"></div>
                   </div>
 
-                  <div margin-bottom padding>
-                    <p no-margin> Percentual de Gordura Meta: 22.00%</p>
+
+                  <div style="border-bottom: none;" padding class="contener">
+                    <p no-margin>Percentual de Gordura Atual: {{percGord}}%</p>
                   </div>
 
-                  <div padding>
-                   <p no-margin>Você está a <span>2.99%</span> de atingir a sua Meta!</p>
+                  <div margin-bottom padding class="contener">
+                    <p no-margin> Percentual de Gordura Meta: {{percGordMeta}}%</p>
+                  </div>
+
+                  <div padding class="contener">
+                   <p no-margin>Você está a <span>{{percGordDif}}%</span> de atingir a sua Meta!</p>
                   </div>
 
               </ion-col>
@@ -58,12 +58,12 @@
           <ion-row  [hidden]="typeAval != 'anamnese'">
 
                   <ion-col col-12>
-                      <h4>Avaliador: MANOEL LUCIO ARAUJO FILHO</h4>
-                      <p margin-vertical style="margin-bottom:0;"> <ion-icon name="md-calendar"></ion-icon> Data: <span>20/07/2018</span> <ion-icon name="md-clipboard" style="margin-left: 5px;"></ion-icon> <span>CONCLUIDO</span></p>
+                      <h4>Avaliador: {{Avaliacao[2]}}</h4>
+                      <p margin-vertical style="margin-bottom:0;"> <ion-icon name="md-calendar"></ion-icon> Data: <span>{{Avaliacao[1]}}</span> <ion-icon name="md-clipboard" style="margin-left: 5px;"></ion-icon> <span>CONCLUIDO</span></p>
                   </ion-col>
 
                   <ion-col col-12 style="margin-bottom:0;">
-                    <div id="graficoIMC" style="width:100%;height:300px;"></div>
+                    <div id="graficoIMC" style="width:100%;height:250px;"></div>
                   </ion-col>
 
                   <ion-col col-12 style="border-top:0;">
@@ -72,7 +72,7 @@
                   </ion-col>
 
                   <ion-col col-12 style="margin-bottom:0;">
-                      <div id="graficoICQ" style="width:100%;height:300px;"></div>
+                      <div id="graficoICQ" style="width:100%;height:250px;"></div>
                   </ion-col>
 
                     <ion-col col-12 style="border-top:0;">

@@ -12,7 +12,6 @@ import { MeusTreinosPage } from '../pages/meus-treinos/meus-treinos';
 import { MinhasAvaliacoesPage } from '../pages/minhas-avaliacoes/minhas-avaliacoes';
 import { ListExerciciosPage } from '../pages/list-exercicios/list-exercicios';
 import { EvolucaoPage } from '../pages/evolucao/evolucao';
-import { GraficosPage } from '../pages/graficos/graficos';
 
 
 
@@ -42,7 +41,6 @@ export class MyApp {
       { title: 'Minhas Avaliaçoes', component: MinhasAvaliacoesPage, icon: 'ios-paper-outline' },
       { title: 'Lista de Exercicios', component: ListExerciciosPage, icon: 'ios-list-box-outline' },
       { title: 'Evoluçao', component: EvolucaoPage, icon: 'md-podium' },
-      { title: 'Graficos', component: GraficosPage, icon: 'md-podium' },
     ];
 
     events.subscribe('user:created', () => {

@@ -24,6 +24,14 @@
             <p no-margin> <span><ion-icon name="md-calendar"></ion-icon> Período:</span>  {{treino[2]}} <span>a</span> {{treino[3]}}</p>
           </div>
 
+          <ion-grid [hidden]="NothignToday == true">
+              <ion-row>
+                <ion-col class="msgNothing" col-12 padding>
+                    Nenhum Treino para Hoje
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+
         </ion-col>
 
         <ion-col col-12 class="gifExerc" no-padding *ngSwitchCase="'ativos'">
@@ -33,6 +41,14 @@
             <p>Criado por: {{treino[4]}}</p>
             <p no-margin> <span><ion-icon name="md-calendar"></ion-icon> Período:</span>  {{treino[2]}} <span>a</span> {{treino[3]}}</p>
           </div>
+
+          <ion-grid [hidden]="NothignAtivo == true">
+              <ion-row>
+                <ion-col class="msgNothing" col-12 padding>
+                    Nenhum Treino para Ativo
+                </ion-col>
+              </ion-row>
+          </ion-grid>
 
         </ion-col>
 
@@ -44,6 +60,14 @@
             <p no-margin> <span><ion-icon name="md-calendar"></ion-icon> Período:</span>  {{treino[2]}} <span>a</span> {{treino[3]}}</p>
           </div>
 
+          <ion-grid [hidden]="NothignVencidos == true">
+              <ion-row>
+                <ion-col class="msgNothing" col-12 padding>
+                    Nenhum Treino para Vencido
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+
         </ion-col>
 
         <ion-col col-12 class="gifExerc" no-padding *ngSwitchCase="'todos'">
@@ -53,6 +77,14 @@
             <p>Criado por: {{treino[4]}}</p>
             <p no-margin> <span><ion-icon name="md-calendar"></ion-icon> Período:</span>  {{treino[2]}} <span>a</span> {{treino[3]}}</p>
           </div>
+
+          <ion-grid [hidden]="NothignTodos == true">
+              <ion-row>
+                <ion-col class="msgNothing" col-12 padding>
+                    Nenhum Treino!!!
+                </ion-col>
+              </ion-row>
+          </ion-grid>
 
         </ion-col>
 

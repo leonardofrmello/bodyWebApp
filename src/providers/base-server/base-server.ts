@@ -8,8 +8,8 @@ export class BaseServerProvider {
 
   private basePath: string;
   public loader;
-  public banco:string = "&bd=905";
-  public dataBase:string = "905";
+  public banco:string = "&bd=014";
+  public dataBase:string = "014";
   public foto: string = "";
 
   constructor(

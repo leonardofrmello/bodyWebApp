@@ -21,7 +21,6 @@ import { AvaliacaoPageModule } from '../pages/avaliacao/avaliacao.module';
 import { ExercicioDescPageModule } from '../pages/exercicio-desc/exercicio-desc.module';
 import { ExercicioPageModule } from '../pages/exercicio/exercicio.module';
 import { AmChartsModule } from "@amcharts/amcharts3-angular";
-import { GraficosPageModule } from '../pages/graficos/graficos.module';
 
 
 @NgModule({
@@ -48,7 +47,6 @@ import { GraficosPageModule } from '../pages/graficos/graficos.module';
     ExercicioDescPageModule,
     ExercicioPageModule,
     AmChartsModule,
-    GraficosPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
