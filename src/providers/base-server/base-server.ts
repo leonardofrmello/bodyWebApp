@@ -67,11 +67,36 @@ export class BaseServerProvider {
     }
   }
 
-  public MontaBanco(){
-    //pega dados do perfil
-    this.postData("Perfil/PerfilAjax.php?callback=JSON_CALLBACK&BuscaPerfil=S").then((result : Pessoa) => {
-        localStorage.setItem("JsonPerfil", JSON.stringify(result[1]));
-        this.events.publish('user:foto');
+  criaBanco(){
+
+    localStorage.removeItem("listGrupoMusc");
+    localStorage.removeItem("listaExercicios");
+    localStorage.removeItem("listaTreinos");
+    localStorage.removeItem("listaAvaliacoes");
+
+    //Carrega grupos Musculares
+    this.postData("Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarListaExerciciosCat=S", false).then((result) => {
+      localStorage.setItem("listGrupoMusc", JSON.stringify(result));
+    })
+
+    //Carrega lista exercicios
+    this.postData("Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarListaExerciciosTotal", true).then((result) => {
+      localStorage.setItem("listaExercicios", JSON.stringify(result));
+    })
+
+    //Carrega meus treinos
+    this.postData("Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarTreinos=T", false).then((result) => {
+      localStorage.setItem("listaTreinos", JSON.stringify(result));
+    })
+
+    //Carrega minhas avaliacoes
+    this.postData("Avaliacoes/AvaliacaoAjax.php?callback=JSON_CALLBACK&BuscarAvaliacoes=T", false).then((result) => {
+      localStorage.setItem("listaAvaliacoes", JSON.stringify(result));
+    })
+
+    //Carrega lista evolucao
+    this.postData("Avaliacoes/AvaliacaoAjax.php?callback=JSON_CALLBACK&BuscarListaEvolucao", false).then((result) => {
+      localStorage.setItem("listEvolucoes", JSON.stringify(result));
     })
 
   }

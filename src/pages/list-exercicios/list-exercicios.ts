@@ -24,44 +24,26 @@ export class ListExerciciosPage {
 
     this.carregaListaExercicios();
 
-    this.actionSheet = this.actionSheetCtrl.create({
-      cssClass: "actionGPMusc"
-    });
-
-  }
-
-  ionViewDidLoad() {
-
   }
 
   ionViewWillEnter(){
 
-    this.baseService.postData("Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarListaExerciciosCat=S", false).then((result) => {
+    if(localStorage.getItem("listGrupoMusc") != undefined && localStorage.getItem("listGrupoMusc") != ""){
 
-      this.gpMusc.push(result);
-      console.log("vallor de gp musc");
-      console.log(this.gpMusc);
+      this.recriarAction(JSON.parse(localStorage.getItem("listGrupoMusc")));
 
-      let dados = this.gpMusc[0].data;
-      localStorage.setItem("botoesAction", JSON.stringify(dados));
+    }else{
 
-        for (var i = 0; i < dados.length; i++) {
-            let data = dados[i];
-            this.actionSheet.addButton(
-              {
-                text: dados[i][1],
-                cssClass: "title-img"+dados[i][0],
-                handler: () => {
-                  console.log(data);
-                  this.filtraExercicios(data[0]);
-                }
-              }
-
-            );
-        }
+      this.baseService.postData("Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarListaExerciciosCat=S", false).then((result) => {
+        localStorage.setItem("listGrupoMusc", JSON.stringify(result));
+        this.recriarAction(result);
       })
+    }
+
+
 
   }
+
   //Json de lista de grupo muscular
   //Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarListaExerciciosCat=S
 
@@ -70,14 +52,16 @@ export class ListExerciciosPage {
 
 
   //por conta de um erro do action sheet tive que recria-lo
-  recriarAction(){
+  recriarAction(e){
+    if(e == undefined){
+      e = JSON.parse(localStorage.getItem("listGrupoMusc"));
+    }
     this.actionSheet = "";
-
+    let dados = e.data;
     this.actionSheet = this.actionSheetCtrl.create({
       cssClass: "actionGPMusc"
     });
 
-    let dados = JSON.parse(localStorage.getItem("botoesAction"));
 
     for (var i = 0; i < dados.length; i++) {
       let data = dados[i];
@@ -102,7 +86,7 @@ export class ListExerciciosPage {
 
     let lista = JSON.parse(localStorage.getItem("listaExercicios"));
 
-    const filtro = lista.filter(function(value){
+    const filtro = lista.data.filter(function(value){
       return value[3] === gpMusc;
     })
 
@@ -117,11 +101,17 @@ export class ListExerciciosPage {
   }
 
   carregaListaExercicios(){
-    this.baseService.postData("Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarListaExerciciosTotal").then((result) => {
-      this.listExercicios.push(result);
-      localStorage.setItem("listaExercicios", JSON.stringify(this.listExercicios[0].data));
-      this.listExercicios = this.listExercicios[0];
-    })
+
+    if(localStorage.getItem("listaExercicios") != undefined && localStorage.getItem("listaExercicios") != ""){
+      let dados = JSON.parse(localStorage.getItem("listaExercicios"));
+      this.listExercicios = dados.data;
+    }else{
+      this.baseService.postData("Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarListaExerciciosTotal").then((result:any) => {
+        localStorage.setItem("listaExercicios", JSON.stringify(result));
+        this.listExercicios = result.data;
+      })
+    }
+
   }
 
   openPage(dados){

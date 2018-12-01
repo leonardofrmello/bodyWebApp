@@ -16,13 +16,13 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content class="bkgPages">
 
     <ion-toolbar color="primary" justify-content-between (click)="presentActionSheet()">
-        <ion-title style="font-weight: 500;">6 MESES</ion-title>
+        <ion-title style="font-weight: 500;">{{periodo}} MESES</ion-title>
     </ion-toolbar>
 
-    <ion-grid>
+     <ion-grid *ngIf="Nothing">
       <ion-row>
         <ion-col class="msgNothing" col-12 padding>
           Nenhuma avaliação foi feita!!!
@@ -30,11 +30,59 @@
       </ion-row>
     </ion-grid>
 
-</ion-content>
+    <ion-grid [ngSwitch]="menuFooter" >
+
+      <ion-row  [hidden]="menuFooter != 'composicao'">
+
+        <ion-col col-11 style="margin-bottom:0;">
+          <div id="graficComposicao" style="width:100%;height:250px;"></div>
+        </ion-col>
+
+        <!-- repeat de avaliacoes-->
+        <ion-col col-11 class="listAval" *ngFor="let e of evolucao">
+            <p><ion-icon name="md-calendar"></ion-icon>{{e.DATA_EVOL | date: 'dd/MM/yyyy'}}   <ion-icon name="md-warning"></ion-icon></p>
+            <p>Peso: {{e.PESO_EVOL}} %Gordura: {{e.GORD_ATUAL_EVOL}}</p>
+        </ion-col>
+
+      </ion-row><!--- fim composicao --->
+
+     <ion-row  [hidden]="menuFooter != 'imc'">
+
+        <ion-col col-11 style="margin-bottom:0;">
+          <div id="graficoIMC" style="width:100%;height:250px;"></div>
+        </ion-col>
+
+        <!-- repeat de avaliacoes-->
+        <ion-col col-11 class="listAval" *ngFor="let e of evolucao">
+            <p><ion-icon name="md-calendar"></ion-icon>{{e.DATA_EVOL | date: 'dd/MM/yyyy'}}  <ion-icon name="md-warning"></ion-icon></p>
+            <p>Peso: {{e.PESO_EVOL}} Altura: {{e.ALTURA_EVOL}}</p>
+        </ion-col>
+
+      </ion-row>
+
+      <ion-row  [hidden]="menuFooter != 'icq'">
+
+          <ion-col col-11 style="margin-bottom:0;">
+            <div id="graficoICQ" style="width:100%;height:250px;"></div>
+          </ion-col>
+
+            <!-- repeat de avaliacoes-->
+            <ion-col col-11 class="listAval" *ngFor="let e of evolucao">
+                <p><ion-icon name="md-calendar"></ion-icon>{{e.DATA_EVOL | date: 'dd/MM/yyyy'}}    <ion-icon name="md-warning"></ion-icon></p>
+                <p>Cintura: {{e.CINTURA_EVOL}} Quadril: {{e.QUADRIL_EVOL}}</p>
+            </ion-col>
+
+      </ion-row>
+
+  </ion-grid>
+
+
+
+  </ion-content>
 
   <ion-footer>
     <ion-toolbar>
-      <ion-segment [(ngModel)]="icons" class="footerEvol">
+      <ion-segment [(ngModel)]="menuFooter" class="footerEvol">
         <ion-segment-button value="composicao">
           COMPOSIÇÃO
         </ion-segment-button>

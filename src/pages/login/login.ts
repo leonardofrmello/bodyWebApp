@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { BaseServerProvider } from '../../providers/base-server/base-server';
 import { MainPage } from '../main/main';
@@ -18,7 +18,8 @@ export class LoginPage {
     public navParams: NavParams,
     public baseService: BaseServerProvider,
     public events: Events,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private alertCtrl: AlertController
   ) {
     this.userData = this.formBuilder.group({
       username: new FormControl('leonardofrmello@hotmail.com', [Validators.required, Validators.minLength(6)]),
@@ -36,17 +37,32 @@ export class LoginPage {
       if(result[0].ISVALID == "S"){
         console.log(result);
         localStorage.setItem("token", result[0].COOKIE);
-        this.baseService.MontaBanco();
+        this.baseService.criaBanco();
         this.navCtrl.push(MainPage);
       }else{
-        /*ons.notification.alert({message: response[0].MSG, title: "Atenção"});
-        delete $window.localStorage.token;
-        $window.location = "login.html";*/
+        console.log("bateu no else");
+
+        let alert = this.alertCtrl.create({
+          title: 'Atenção',
+          message: result[0].MSG,
+          buttons: [
+            {
+              text: 'Ok',
+              role: 'Ok',
+              handler: () => {
+                console.log('Cancel clicked');
+              }
+            },
+          ]
+        });
+        alert.present();
       }
 
     }, (err) => {
       this.baseService.showMessage(err.error.text);
     });
   }
+
+
 
 }

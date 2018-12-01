@@ -29,18 +29,23 @@ export class MeusTreinosPage {
     ) {
 
       moment.locale('pt-br'); //seta o tipo portugues de data.
-
       this.carregaTreinos();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MeusTreinosPage');
-  }
-
   carregaTreinos(){
-    this.baseService.postData("Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarTreinos=T").then((result) => {
-      this.organizaTreino(result);
-    })
+
+    if(localStorage.getItem("listaTreinos") != undefined && localStorage.getItem("listaTreinos") != ""){
+
+      this.organizaTreino(JSON.parse(localStorage.getItem("listaTreinos")));
+
+    }else{
+
+      this.baseService.postData("Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarTreinos=T").then((result) => {
+        this.organizaTreino(result);
+      })
+
+    }
+
   }
 
   ordenaTreino(data){

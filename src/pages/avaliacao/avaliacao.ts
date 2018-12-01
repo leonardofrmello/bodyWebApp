@@ -24,8 +24,8 @@ export class AvaliacaoPage {
   public icq;
 
   public composicao = [];
-  public percGord;
-  public percGordMeta;
+  public percGord:any;
+  public percGordMeta:any;
   public percGordDif;
 
   constructor(
@@ -47,9 +47,15 @@ export class AvaliacaoPage {
 
   carregaAntropometria(id){
     this.baseService.postData("Avaliacoes/AvaliacaoAjax.php?callback=JSON_CALLBACK&BuscarAvaliacaoAntropometriaTodos=T", false).then((result) => {
-      let filtro = result.data.filter(function(dados){
+
+      let novosDados = [];
+      novosDados.push(result);
+
+      let filtro = novosDados[0].data.filter(function(dados){
         return dados[0] == id;
       });
+
+
 
       this.montaGraficoAntropo(filtro[0]);
     })
@@ -63,9 +69,12 @@ export class AvaliacaoPage {
       let idd = this.dadosAluno.DTNASC.split("/");
       let idade =  this.idade(idd[2], idd[1], idd[0]);
 
-      let filtro = result.filter(function(dados){
+      let novosDados = [];
+      novosDados.push(result);
+
+      let filtro = novosDados[0].filter(function(dados){
           return dados.ID_EVOL == idAval;
-        });
+      });
 
       //valor retornado da avaliacao
       this.dadosAval = filtro[0];
@@ -204,7 +213,8 @@ export class AvaliacaoPage {
       })
     }
 
-    this.percGordDif = Math.abs((this.percGord - this.percGordMeta).toFixed(2));
+    this.percGordDif = Math.abs((this.percGord - this.percGordMeta));
+    this.percGordDif = this.percGordDif.toFixed(2);
 
   }
 
@@ -418,13 +428,13 @@ export class AvaliacaoPage {
     var d = new Date,
         ano_atual = d.getFullYear(),
         mes_atual = d.getMonth() + 1,
-        dia_atual = d.getDate(),
+        dia_atual = d.getDate();
 
-        ano_aniversario = +ano_aniversario,
-        mes_aniversario = +mes_aniversario,
-        dia_aniversario = +dia_aniversario,
+      ano_aniversario = +ano_aniversario;
+      mes_aniversario = +mes_aniversario;
+      dia_aniversario = +dia_aniversario;
 
-        quantos_anos = ano_atual - ano_aniversario;
+      let  quantos_anos = ano_atual - ano_aniversario;
 
     if (mes_atual < mes_aniversario || mes_atual == mes_aniversario && dia_atual < dia_aniversario) {
         quantos_anos--;

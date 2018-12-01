@@ -77,6 +77,31 @@ export class MyApp {
       this.foto = "http://finance.dragon296.startdedicated.com/Pessoas/"+this.baseService.dataBase+"/Clientes/"+dados.IDALUNO+".png";
       this.nome = dados.NOME;
     }
+
+    this.validSession();
+  }
+
+  validSession(){
+
+    let token = localStorage.getItem("token");
+
+    if(token != "" && token != undefined){
+
+      this.baseService.postData(`Perfil/PerfilAjax.php?callback=JSON_CALLBACK&VersaoApp=2.2.0&ValidaLogin=C&cookie=${token}`).then((result) => {
+        if(result[0].ISVALID == "S"){
+          console.log(result);
+          console.log("criar o banco");
+          this.baseService.criaBanco();
+        }else{
+          this.nav.setRoot(LoginPage);
+        }
+
+      }, (err) => {
+        this.baseService.showMessage(err.error.text);
+      });
+
+    }
+
   }
 
   openPage(page) {
@@ -87,6 +112,7 @@ export class MyApp {
     localStorage.clear();
     this.nav.setRoot(LoginPage);
   }
+
 }
 
 
