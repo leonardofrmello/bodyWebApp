@@ -48,7 +48,9 @@
 .back-button.show-back-button{
   position: absolute !important;
   right: 0 !important;
+  z-index: 9999;
 }
+
 
 .bkgPages{
   background-color: #f9f9f9 !important;
@@ -71,7 +73,6 @@
   .musc:before{
     width: 50px;
     height: 50px;
-    background: red;
     content: “”;
   }
 
@@ -111,27 +112,28 @@
   }
 
   .title-img2::before{
-    background-image: url("../assets/images/musculos/ARMS_ICON_2X.png");
+    //background-image: url("../assets/images/musculos/ARMS_ICON_2X.png");
+    background-image: url("../assets/images/musculos/ARMS_ICON_2X.PNG");
   }
   .title-img3::before{
-    background-image: url("../assets/images/musculos/BACK_ICON_2X.png");
+    background-image: url("../assets/images/musculos/BACK_ICON_2X.PNG");
   }
   .title-img4::before{
-    background-image: url("../assets/images/musculos/CHEST_ICON_2X.png");
+    background-image: url("../assets/images/musculos/CHEST_ICON_2X.PNG");
   }
   .title-img5::before{
-    background-image: url("../assets/images/musculos/SHOULDERS_ICON_2X.png");
+    background-image: url("../assets/images/musculos/SHOULDERS_ICON_2X.PNG");
   }
   .title-img6::before{
-    background-image: url("../assets/images/musculos/LEGS_ICON_2X.png");
+    background-image: url("../assets/images/musculos/LEGS_ICON_2X.PNG");
   }
   .title-img7::before{
-    background-image: url("../assets/images/musculos/ICON_ELLIPTICAL.png");
+    background-image: url("../assets/images/musculos/ICON_ELLIPTICAL.PNG");
   }
   .title-img8::before{
-    background-image: url("../assets/images/musculos/ICON_LEG_STRETCH.png");
+    background-image: url("../assets/images/musculos/ICON_LEG_STRETCH.PNG");
   }
   .title-img9::before{
-    background-image: url("../assets/images/musculos/PULLOVER_ON_STABILITY_BALL_WITH_WEIGHT.png");
+    background-image: url("../assets/images/musculos/PULLOVER_ON_STABILITY_BALL_WITH_WEIGHT.PNG");
   }
 }
