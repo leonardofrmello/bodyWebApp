@@ -1,0 +1,66 @@
+page-exercicio {
+  .gifExerc{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0 !important;
+  }
+
+  .gifExerc img{
+    border: 2px solid #cccccc;
+    border-radius: 1rem;
+    width: 70%;
+    background: #fff;
+  }
+
+  h1{
+    color: #09b7a5;
+    font-size: 1.4rem;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 0;
+  }
+
+  .tolbarExerc .toolbar-background-md{
+    background: transparent !important;
+  }
+  .segment-md .segment-button{
+    border-width: 2px;
+    border-style: solid;
+  }
+
+  p{
+    color: #62cfc6;
+    text-align: center;
+  }
+
+  .selectType{
+    background: #fff;
+    padding: 10px 0 !important;
+  }
+
+  ion-segment{
+    background: #fff !important;
+  }
+
+  .segment-button{
+    border-color: #00ada1!important;
+    color: #00ada1!important;
+    font-weight: bold !important;
+    max-width: 125px !important;
+  }
+
+  .segment-button.segment-activated{
+    color: #fff !important;
+    background-color: #00b1a5!important;
+  }
+
+  .descExerc{
+    background-color: #fff;
+    margin: 20px 10px;
+    border: 2px solid #cccccc;
+    padding: 16px;
+    color: #2b2b2b;
+  }
+
+}
