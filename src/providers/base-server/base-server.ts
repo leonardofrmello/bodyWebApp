@@ -11,6 +11,7 @@ export class BaseServerProvider {
   public banco:string = "&bd=014";
   public dataBase:string = "014";
   public foto: string = "";
+  public color: string = "#f432f2";
 
   constructor(
     public http: HttpClient,
@@ -38,13 +39,10 @@ export class BaseServerProvider {
       .subscribe(data =>{ this.Loading(0, load);
           try {
             resolve(data);
-            console.log("entrou try");
           } catch (e) {
-            console.log("entrou catch");
             reject(data["_body"]);
           }
         },err => { this.Loading(0, load);
-          console.log("entrou erro");
           reject(err);
       });
     });
@@ -69,10 +67,19 @@ export class BaseServerProvider {
 
   criaBanco(){
 
+    localStorage.removeItem("JsonPerfil");
     localStorage.removeItem("listGrupoMusc");
     localStorage.removeItem("listaExercicios");
     localStorage.removeItem("listaTreinos");
     localStorage.removeItem("listaAvaliacoes");
+    localStorage.removeItem("listEvolucoes");
+
+
+    //Carrega perfil
+    this.postData("Perfil/PerfilAjax.php?callback=JSON_CALLBACK&BuscaPerfil=S", false).then((result) => {
+      localStorage.setItem("JsonPerfil", JSON.stringify(result[1]));
+      this.events.publish('user:foto');
+    })
 
     //Carrega grupos Musculares
     this.postData("Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarListaExerciciosCat=S", false).then((result) => {
@@ -92,6 +99,7 @@ export class BaseServerProvider {
     //Carrega minhas avaliacoes
     this.postData("Avaliacoes/AvaliacaoAjax.php?callback=JSON_CALLBACK&BuscarAvaliacoes=T", false).then((result) => {
       localStorage.setItem("listaAvaliacoes", JSON.stringify(result));
+      this.events.publish('user:qntAval');
     })
 
     //Carrega lista evolucao
@@ -100,6 +108,8 @@ export class BaseServerProvider {
     })
 
   }
+
+
 
   //let EMAILPATTERN = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
 

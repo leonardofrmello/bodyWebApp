@@ -247,7 +247,8 @@ export class AvaliacaoPage {
             "lineAlpha": 0.2, "title": "Máximo", "type": "column",
             "valueField": "Maximo", "lineColor": "#B0C4DE", "balloonText": "<span style='font-size:13px;'>Indice Máximo :<b>[[value]]</span>",
           }
-        ]
+        ],
+      "categoryField" : "resultado"
 
     })
 
@@ -286,8 +287,16 @@ export class AvaliacaoPage {
           "lineColor": (icq > this.valRisco("A",sexo,idade)) ? "#FF6347" : "#66CDAA",
           "dashLengthField": "dashLengthColumn", "balloonText": "<span style='font-size:13px;'>Indice Obtido: <b>[[value]] </b> </span>\n\<span style='font-size:13px;'>Classificação: <b>" + this.classICQ(icq,sexo,idade) +"</b> </span>"},
 
-        {"fillAlphas": 0.9, "labelText": "Alto", "lineAlpha": 0.2, "title": "Máximo", "type": "column", "valueField": "Maximo", "lineColor": "#B0C4DE", "balloonText": "<span style='font-size:13px;'>Indice Alto Risco :<b>[[value]]</span>","lineColor": "#B0C4DE"}
+        {
+          "fillAlphas": 0.9, "labelText": "Alto", "lineAlpha": 0.2,
+          "title": "Máximo",
+          "type": "column",
+          "valueField": "Maximo",
+          "lineColor": "#B0C4DE",
+          "balloonText": "<span style='font-size:13px;'>Indice Alto Risco :<b>[[value]]</span>"
+        }
       ],
+      "categoryField" : "resultado"
 
     })
 

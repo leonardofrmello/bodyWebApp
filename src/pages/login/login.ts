@@ -22,8 +22,8 @@ export class LoginPage {
     private alertCtrl: AlertController
   ) {
     this.userData = this.formBuilder.group({
-      username: new FormControl('leonardofrmello@hotmail.com', [Validators.required, Validators.minLength(6)]),
-      password: new FormControl('02021989', [Validators.required, Validators.minLength(6)]),
+      username: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     });
   }
 

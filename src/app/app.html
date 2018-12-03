@@ -12,7 +12,7 @@
       <ion-list>
         <ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">
             <ion-icon  name="{{p.icon}}" style="margin-right:10%"></ion-icon> {{p.title}}
-            <ion-badge item-end *ngIf="p.title == 'Meus Treinos' || p.title == 'Minhas Avaliaçoes'">5</ion-badge>
+            <ion-badge item-end *ngIf="p.title == 'Meus Treinos' || p.title == 'Minhas Avaliaçoes'">{{p.variavel}}</ion-badge>
         </ion-item>
         <ion-item menuClose (click)="update()">
           <ion-icon name="md-refresh" style="margin-right:10%"></ion-icon> Atualizar

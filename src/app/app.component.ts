@@ -21,10 +21,12 @@ import { EvolucaoPage } from '../pages/evolucao/evolucao';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any;
-  pages: Array<{title: string, component: any, icon: string}>;
+  pages: Array<{title: string, component: any, icon: string, variavel: any}>;
   public userSession: Pessoa;
   public foto: string;
   public nome: string;
+  public qntTreino = 0;
+  public qntAval = 0;
 
   constructor(
     public platform: Platform,
@@ -33,14 +35,15 @@ export class MyApp {
     public events: Events,
     public baseService: BaseServerProvider
   ) {
+
     this.initializeApp();
     this.pages = [
-      { title: 'Página Inicial', component: MainPage, icon: 'home' },
-      { title: 'Perfil', component: ProfilePage, icon: 'person' },
-      { title: 'Meus Treinos', component: MeusTreinosPage, icon: 'ios-create-outline' },
-      { title: 'Minhas Avaliaçoes', component: MinhasAvaliacoesPage, icon: 'ios-paper-outline' },
-      { title: 'Lista de Exercicios', component: ListExerciciosPage, icon: 'ios-list-box-outline' },
-      { title: 'Evoluçao', component: EvolucaoPage, icon: 'md-podium' },
+      { title: 'Página Inicial', component: MainPage, icon: 'home', variavel: "" },
+      { title: 'Perfil', component: ProfilePage, icon: 'person', variavel: "" },
+      { title: 'Meus Treinos', component: MeusTreinosPage, icon: 'ios-create-outline', variavel: "0"},
+      { title: 'Minhas Avaliaçoes', component: MinhasAvaliacoesPage, icon: 'ios-paper-outline', variavel: "0" },
+      { title: 'Lista de Exercicios', component: ListExerciciosPage, icon: 'ios-list-box-outline', variavel: "" },
+      { title: 'Evoluçao', component: EvolucaoPage, icon: 'md-podium', variavel: "" },
     ];
 
     events.subscribe('user:created', () => {
@@ -54,11 +57,18 @@ export class MyApp {
 
     events.subscribe('user:foto', () => {
       let dados = JSON.parse(localStorage.getItem("JsonPerfil"));
-      this.foto = "http://finance.dragon296.startdedicated.com/Pessoas/"+this.baseService.dataBase+"/Clientes/"+dados.IDALUNO+".png";
       this.nome = dados.NOME;
+      this.foto = "http://finance.dragon296.startdedicated.com/Pessoas/"+this.baseService.dataBase+"/Clientes/"+dados.IDALUNO+".png";
+    });
+
+    this.events.subscribe('user:qntAval', () => {
+      let qnt = JSON.parse(localStorage.getItem("listaAvaliacoes")).data.length;
+      console.log(qnt);
+      this.qntTreino = 5;
     });
 
   }
+
 
   initializeApp() {
     this.platform.ready().then(() => {
@@ -71,13 +81,6 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-
-    if(JSON.parse(localStorage.getItem("JsonPerfil")) != undefined){
-      let dados = JSON.parse(localStorage.getItem("JsonPerfil"));
-      this.foto = "http://finance.dragon296.startdedicated.com/Pessoas/"+this.baseService.dataBase+"/Clientes/"+dados.IDALUNO+".png";
-      this.nome = dados.NOME;
-    }
-
     this.validSession();
   }
 
@@ -104,11 +107,16 @@ export class MyApp {
 
   }
 
+  update(){
+    this.baseService.criaBanco();
+  }
+
   openPage(page) {
     this.nav.setRoot(page.component);
   }
 
-  public presentLogout() {
+  presentLogout() {
+
     localStorage.clear();
     this.nav.setRoot(LoginPage);
   }
