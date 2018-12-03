@@ -26,7 +26,7 @@ export class BaseServerProvider {
       this.basePath = "http://bodyweb.dragon296.startdedicated.com/Api/";
     }
   }
-
+  //981592
   public createUserSession(session: Pessoa) {
     localStorage.setItem("userSession", JSON.stringify(session));
     this.events.publish('user:created');
