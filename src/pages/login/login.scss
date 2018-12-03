@@ -1,8 +1,6 @@
 page-login {
     .scroll-content {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        align-content: center;
         text-align: center;
     }
 
@@ -10,6 +8,7 @@ page-login {
         box-shadow: none;
         background: rgba(0, 0, 0, 0.5);
         border-radius: 5px;
+        margin-top: 30%;
     }
 
     a, p,ion-card-header.card-header {
@@ -27,8 +26,9 @@ page-login {
     }
 
     .logoLogin{
-        width: 70%;
+        width: 30%;
         margin: 5% auto
     }
 
+  
 }
