@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, ModalController } from 'ionic-angular';
 import { CadEvolucaoModalPage } from '../cad-evolucao-modal/cad-evolucao-modal';
-import { AmChartsService, AmChart } from "@amcharts/amcharts3-angular";
+import { AmChartsService } from "@amcharts/amcharts3-angular";
 import { BaseServerProvider } from '../../providers/base-server/base-server';
 import moment from 'moment';
 
@@ -70,11 +70,20 @@ export class EvolucaoPage {
 
     if(localStorage.getItem("evolucoes") != undefined && localStorage.getItem("evolucoes") != ""){
       let result = JSON.parse(localStorage.getItem("listEvolucoes"));
-      this.atualizaGraf(result, "3");
+      if(result.length != null){
+        this.atualizaGraf(result, "3");
+      }else{
+        this.Nothing = true;
+      }
+
     }else{
       this.baseService.postData("Avaliacoes/AvaliacaoAjax.php?callback=JSON_CALLBACK&BuscarListaEvolucao", true).then((result) => {
-        localStorage.setItem("listEvolucoes", JSON.stringify(result));
-        this.atualizaGraf(result, "3");
+        let result2:any = localStorage.setItem("listEvolucoes", JSON.stringify(result));
+        if(result2 != null){
+          this.atualizaGraf(result, "3");
+        }else{
+            this.Nothing = true;
+        }
       })
     }
 

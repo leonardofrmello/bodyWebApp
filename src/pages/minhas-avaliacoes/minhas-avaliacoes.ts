@@ -11,6 +11,7 @@ import { BaseServerProvider } from '../../providers/base-server/base-server';
 export class MinhasAvaliacoesPage {
 
   public listAval;
+  public NothigAval = true;
 
   constructor(
     public navCtrl: NavController,
@@ -32,10 +33,13 @@ export class MinhasAvaliacoesPage {
 
     if(localStorage.getItem("listaAvaliacoes") != "" && localStorage.getItem("listaAvaliacoes") != undefined){
       this.listAval = JSON.parse(localStorage.getItem("listaAvaliacoes")).data;
+      this.NothigAval = (this.listAval.length > 0 ? true : false);
     }else{
       this.baseService.postData("Avaliacoes/AvaliacaoAjax.php?callback=JSON_CALLBACK&BuscarAvaliacoes=T").then((result:any) => {
         localStorage.setItem("listaAvaliacoes", JSON.stringify(result));
         this.listAval = result.data;
+        this.NothigAval = (this.listAval.length > 0 ? true : false);
+
       })
     }
 
