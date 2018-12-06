@@ -8,8 +8,8 @@ export class BaseServerProvider {
 
   private basePath: string;
   public loader;
-  public banco:string = "&bd=146";
-  public dataBase:string = "146";
+  public banco:string = "&bd=053";
+  public dataBase:string = "053";
   public foto: string = "";
   public color: string = "#f432f2";
 
