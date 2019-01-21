@@ -1,0 +1,7 @@
+{
+  "name": ":Q",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

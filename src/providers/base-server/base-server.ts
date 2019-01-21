@@ -21,9 +21,9 @@ export class BaseServerProvider {
     public loadingCtrl: LoadingController
   ) {
     if(this.platform.is("cordova")){
-      this.basePath = "http://bodyweb.dragon296.startdedicated.com/Api/";
+      this.basePath = "http://bodyweb.dragon296.startdedicated.com/Api";
     } else {
-      this.basePath = "http://bodyweb.dragon296.startdedicated.com/Api/";
+      this.basePath = "http://bodyweb.dragon296.startdedicated.com/Api";
     }
   }
   //981592
@@ -35,14 +35,23 @@ export class BaseServerProvider {
   public postData(page: string, load?: boolean) {
     this.Loading(1, load);
     return new Promise((resolve, reject) => {
+      console.log("valor da url requisitada");
+      console.log(this.basePath + "/" + page + this.banco, "callback=JSON_CALLBACK");
+      console.log("---------------------------------");
       this.http.jsonp(this.basePath + "/" + page + this.banco, "callback=JSON_CALLBACK")
       .subscribe(data =>{ this.Loading(0, load);
           try {
+            console.log("valor do retorno data");
+            console.log(data);
             resolve(data);
           } catch (e) {
+            console.log("valor do retorno e");
+            console.log(e);
             reject(data["_body"]);
           }
         },err => { this.Loading(0, load);
+          console.log("valor do error");
+          console.log(err);
           reject(err);
       });
     });
@@ -88,7 +97,10 @@ export class BaseServerProvider {
 
     //Carrega lista exercicios
     this.postData("Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarListaExerciciosTotal", true).then((result) => {
+      console.log("chamou lista de exercicios");
+      console.log(result);
       localStorage.setItem("listaExercicios", JSON.stringify(result));
+
     })
 
     //Carrega meus treinos

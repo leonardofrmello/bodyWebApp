@@ -14,6 +14,7 @@ import { ListExerciciosPage } from '../pages/list-exercicios/list-exercicios';
 import { EvolucaoPage } from '../pages/evolucao/evolucao';
 
 
+declare var wkWebView: any;
 
 @Component({
   templateUrl: 'app.html'
@@ -45,6 +46,11 @@ export class MyApp {
       { title: 'Lista de Exercicios', component: ListExerciciosPage, icon: 'ios-list-box-outline', variavel: "" },
       { title: 'Evoluçao', component: EvolucaoPage, icon: 'md-podium', variavel: "" },
     ];
+
+    document.addEventListener('deviceready', () => {
+      console.log("leu o device ready");
+      wkWebView.injectCookie('http://bodyweb.dragon296.startdedicated.com/');
+    });
 
     events.subscribe('user:created', () => {
       this.userSession = JSON.parse(localStorage.getItem("userSession"));
