@@ -35,23 +35,14 @@ export class BaseServerProvider {
   public postData(page: string, load?: boolean) {
     this.Loading(1, load);
     return new Promise((resolve, reject) => {
-      console.log("valor da url requisitada");
-      console.log(this.basePath + "/" + page + this.banco, "callback=JSON_CALLBACK");
-      console.log("---------------------------------");
       this.http.jsonp(this.basePath + "/" + page + this.banco, "callback=JSON_CALLBACK")
       .subscribe(data =>{ this.Loading(0, load);
           try {
-            console.log("valor do retorno data");
-            console.log(data);
             resolve(data);
           } catch (e) {
-            console.log("valor do retorno e");
-            console.log(e);
             reject(data["_body"]);
           }
         },err => { this.Loading(0, load);
-          console.log("valor do error");
-          console.log(err);
           reject(err);
       });
     });
