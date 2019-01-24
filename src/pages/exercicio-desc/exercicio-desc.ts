@@ -20,6 +20,7 @@ export class ExercicioDescPage {
     ) {
 
       this.lista = navParams.data.data;
+      console.log("valor de lista");
       console.log(this.lista);
   }
 

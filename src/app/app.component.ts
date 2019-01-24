@@ -28,6 +28,7 @@ export class MyApp {
   public nome: string;
   public qntTreino = 0;
   public qntAval = 0;
+  public variavel;
 
   constructor(
     public platform: Platform,
@@ -48,7 +49,6 @@ export class MyApp {
     ];
 
     document.addEventListener('deviceready', () => {
-      console.log("leu o device ready");
       wkWebView.injectCookie('http://bodyweb.dragon296.startdedicated.com/');
     });
 
@@ -69,8 +69,14 @@ export class MyApp {
 
     this.events.subscribe('user:qntAval', () => {
       let qnt = JSON.parse(localStorage.getItem("listaAvaliacoes")).data.length;
+      this.pages[3].variavel = qnt;
+    });
+
+    this.events.subscribe('user:qntTreinos', () => {
+      let qnt = JSON.parse(localStorage.getItem("listaTreinos")).data.length;
+      console.log("quantidade d etreino");
       console.log(qnt);
-      this.qntTreino = 5;
+      this.pages[2].variavel = qnt;
     });
 
   }
@@ -98,8 +104,6 @@ export class MyApp {
 
       this.baseService.postData(`Perfil/PerfilAjax.php?callback=JSON_CALLBACK&VersaoApp=2.2.0&ValidaLogin=C&cookie=${token}`).then((result) => {
         if(result[0].ISVALID == "S"){
-          console.log(result);
-          console.log("criar o banco");
           this.baseService.criaBanco();
         }else{
           this.nav.setRoot(LoginPage);

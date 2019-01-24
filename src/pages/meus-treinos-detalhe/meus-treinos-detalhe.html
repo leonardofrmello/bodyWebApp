@@ -38,18 +38,23 @@
         </ion-row>
 
 
-        <ion-row class="box" (click)="openPage()" *ngFor="let exerc of listExerc.data">
+        <ion-row class="box" *ngFor="let exerc of listExerc.data">
 
             <ion-col>
                 <ion-row>
-                    <ion-col col-4>
+                    <ion-col col-4 (click)="openPage()">
                         <img src="assets/images/exercicios/{{exerc[0]}}.png" onError="this.src='assets/images/exercicios/0.png'"/>
                     </ion-col>
                     <ion-col col-8>
 
-                        <h4>{{exerc[1]}}</h4>
-                        <p  class="infoExerc"style="margin: 5px 0;"><ion-icon name="md-swap"></ion-icon>Serie: {{exerc[3]}}  <ion-icon name="ios-sync-outline"></ion-icon>Repetições: {{exerc[4]}}</p>
-                        <p class="infoExerc"><ion-icon name="md-speedometer"></ion-icon> Carga: {{exerc[5]}}</p>
+                        <span (click)="openPage()">
+                          <h4>{{exerc[1]}}</h4>
+                          <p  class="infoExerc"style="margin: 5px 0;"><ion-icon name="md-swap"></ion-icon>Serie: {{exerc[3]}}  <ion-icon name="ios-sync-outline"></ion-icon>Repetições: {{exerc[4]}}</p>
+                          <p class="infoExerc"><ion-icon name="md-speedometer"></ion-icon> Carga: {{exerc[5]}}</p>
+                        </span>
+                        <button ion-button  *ngIf="exerc[9] == '0'" class="bkgTema btnExec" (click)="marcaExerc(idTreino,exerc[0],1,exerc[19])" style="margin: 10% 0%;width: 98%;">EXERCUTAR EXERCICIO</button>
+                        <button ion-button  *ngIf="exerc[9] != '0'" class="btnExec" (click)="desmarcaExerc(idTreino,exerc[9])" style="margin: 10% 0%;width: 98%;background: #777!important;">CANCELAR EXERCUTAR</button>
+
                     </ion-col>
                 </ion-row>
             </ion-col>

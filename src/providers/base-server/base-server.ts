@@ -74,7 +74,6 @@ export class BaseServerProvider {
     localStorage.removeItem("listaAvaliacoes");
     localStorage.removeItem("listEvolucoes");
 
-
     //Carrega perfil
     this.postData("Perfil/PerfilAjax.php?callback=JSON_CALLBACK&BuscaPerfil=S", false).then((result) => {
       localStorage.setItem("JsonPerfil", JSON.stringify(result[1]));
@@ -88,15 +87,13 @@ export class BaseServerProvider {
 
     //Carrega lista exercicios
     this.postData("Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarListaExerciciosTotal", true).then((result) => {
-      console.log("chamou lista de exercicios");
-      console.log(result);
       localStorage.setItem("listaExercicios", JSON.stringify(result));
-
-    })
+  })
 
     //Carrega meus treinos
     this.postData("Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarTreinos=T", false).then((result) => {
       localStorage.setItem("listaTreinos", JSON.stringify(result));
+      this.events.publish('user:qntTreinos');
     })
 
     //Carrega minhas avaliacoes
