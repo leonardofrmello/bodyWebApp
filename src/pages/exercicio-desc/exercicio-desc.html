@@ -36,7 +36,9 @@
         </div>
 
         <div class="boxBtnExec" padding-top padding-bottom>
-          <button ion-button  class="bkgTema btnExec">EXERCUTAR EXERCICIO</button>
+          <button ion-button  *ngIf="l[9] == '0'" class="bkgTema btnExec" (click)="marcaExerc(idTreino,l[0],1,l[19])">EXERCUTAR EXERCICIO</button>
+          <button ion-button  *ngIf="l[9] != '0'" class="btnExec" (click)="desmarcaExerc(idTreino,l[9])" style="background: #777!important;">CANCELAR EXERCUTAR</button>
+
         </div>
 
         <p text-left>Séries</p>
@@ -44,18 +46,18 @@
         <div class="contentRepet">
 
           <div class="boxRepeticoes">
-            <div>1º Repetiçao: <ion-input type="text" value="{{l[3]}}"></ion-input></div>
-            <div>Carga: <ion-input type="text" value="{{l[4]}}"></ion-input></div>
+            <div>1º Repetiçao: <ion-input style="padding-left:10px;" type="text" value="{{l[3]}}"></ion-input></div>
+            <div>Carga: <ion-input style="padding-left:10px;" type="text" value="{{l[4]}}"></ion-input></div>
           </div>
 
           <div class="boxRepeticoes">
-            <div>2º Repetiçao: <ion-input type="text" value="{{l[3]}}"></ion-input></div>
-            <div>Carga: <ion-input type="text" value="{{l[4]}}"></ion-input></div>
+            <div>2º Repetiçao: <ion-input style="padding-left:10px;" type="text" value="{{l[3]}}"></ion-input></div>
+            <div>Carga: <ion-input style="padding-left:10px;" type="text" value="{{l[4]}}"></ion-input></div>
           </div>
 
           <div class="boxRepeticoes">
-              <div>3º Repetiçao: <ion-input type="text" value="{{l[3]}}"></ion-input></div>
-              <div>Carga: <ion-input type="text" value="{{l[4]}}"></ion-input></div>
+              <div>3º Repetiçao: <ion-input style="padding-left:10px;" type="text" value="{{l[3]}}"></ion-input></div>
+              <div>Carga: <ion-input style="padding-left:10px;" type="text" value="{{l[4]}}"></ion-input></div>
           </div>
 
         </div>

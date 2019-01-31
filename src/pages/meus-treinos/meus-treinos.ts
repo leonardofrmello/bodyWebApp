@@ -35,12 +35,10 @@ export class MeusTreinosPage {
   carregaTreinos(){
 
     if(localStorage.getItem("listaTreinos") != undefined && localStorage.getItem("listaTreinos") != ""){
-
       this.organizaTreino(JSON.parse(localStorage.getItem("listaTreinos")));
-
     }else{
-
-      this.baseService.postData("Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarTreinos=T").then((result) => {
+      this.baseService.postData("Treinos/TreinoAjax.php?callback=JSON_CALLBACK&BuscarTreinos=T").then((result:any) => {
+        localStorage.setItem("listaTreinos", JSON.stringify(result))
         this.organizaTreino(result);
       })
 
